@@ -5,25 +5,10 @@ ModelImporter:
   internalIDToNameTable: []
   externalObjects:
   - first:
-      type: UnityEngine:Texture2D
+      type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Bakegroup_4K_Color
-    second: {fileID: 2800000, guid: ffb439c60b10fcd4ea2582658a68fb3a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bakegroup_4K_Metallic
-    second: {fileID: 2800000, guid: 50b0e57891e674a479e0571e061ab9fe, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bakegroup_4K_NormalGL
-    second: {fileID: 2800000, guid: 660eb351c1ddab24fafbb6b9611e16b0, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Bakegroup_4K_Roughness
-    second: {fileID: 2800000, guid: 748a508c9e3a8144690cb88b9e4d4e86, type: 3}
+      name: Material
+    second: {fileID: 2100000, guid: ee948cf5b38e33345b7a4d5eaef832f1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
