@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OpenScript : MonoBehaviour
+public class OpenClose : MonoBehaviour
 {
     private Animator mAnimator;
     // Start is called before the first frame update

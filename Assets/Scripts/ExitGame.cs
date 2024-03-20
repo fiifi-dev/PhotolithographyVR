@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExitGameScript : MonoBehaviour
+public class ExitGame : MonoBehaviour
 {
     public Button button;
     // Start is called before the first frame update
