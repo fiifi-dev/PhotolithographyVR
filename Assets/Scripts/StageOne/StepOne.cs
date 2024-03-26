@@ -1,29 +1,28 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class ItemPickup : MonoBehaviour
+public class StepOne : MonoBehaviour
 {
-
     public BuildStage BuildStage;
+
     private void OnEnable()
     {
         GetComponent<XRGrabInteractable>().selectEntered.AddListener(HandleSelectEntered);
-        GetComponent<XRGrabInteractable>().selectExited.AddListener(HandleSelectExited);
+        //GetComponent<XRGrabInteractable>().selectExited.AddListener(HandleSelectExited);
     }
     private void OnDisable()
     {
         GetComponent<XRGrabInteractable>().selectEntered.RemoveListener(HandleSelectEntered);
-        GetComponent<XRGrabInteractable>().selectExited.RemoveListener(HandleSelectExited);
+        //GetComponent<XRGrabInteractable>().selectExited.RemoveListener(HandleSelectExited);
     }
 
-    private void HandleSelectExited(SelectExitEventArgs eventArgs)
-    {
-        Debug.Log(gameObject.name + " was dropped by " + gameObject.name);
-        // Add additional logic for when the item is dropped
-    }
+    //private void HandleSelectExited(SelectExitEventArgs eventArgs)
+    //{
+    //    Debug.Log(gameObject.name + " was dropped by " + gameObject.name);
+    //    // Add additional logic for when the item is dropped
+    //}
 
     private void HandleSelectEntered(SelectEnterEventArgs eventArgs)
     {

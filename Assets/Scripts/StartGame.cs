@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
-    public Button button;
-    public GameObject gameObject;
+    public Button Button;
+    public GameObject GameObject;
     // Start is called before the first frame update
     void Start()
     {
-        button.onClick.AddListener(startGame);
+        Button.onClick.AddListener(HandleButtonClick);
     }
 
-    private void startGame()
+    private void HandleButtonClick()
     {
-        gameObject.SetActive(false);
+        GameObject.SetActive(false);
     }
 }

@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class ExitGame : MonoBehaviour
 {
-    public Button button;
+    public Button Button;
     // Start is called before the first frame update
     void Start()
     {
-        button.onClick.AddListener(closeGame);
+        Button.onClick.AddListener(HandleClick);
     }
 
-    private void closeGame()
+    private void HandleClick()
     {
         #if UNITY_STANDALONE
                 Application.Quit();
