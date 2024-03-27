@@ -118,7 +118,7 @@ public class BuildStage : MonoBehaviour
                 6,
                 new Vector3(60, stagePos - (step.StepId * 10), 0),
                 step.Title,
-                stage.ActiveStepId == step.StepId ? Color.white : new Color(0.7f, 0.7f, 0.7f, 1f)
+                stage.ActiveStepId == step.StepId ? Color.white : new Color(0.6f, 0.6f, 0.6f, 1f)
             );
 
         }

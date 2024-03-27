@@ -15,13 +15,10 @@ public class StepTwo : MonoBehaviour
 
     private void HandleSelectExited(SelectExitEventArgs eventArgs)
     {
-        if (IsDone) return;
+        if (!CanPerformStep()) return;
 
         // Runs if wafer is dropped in petri dish
         var stage = BuildStage.GetCurrentStage();
-
-        if (!IsInDish || CollidedGameObject == null ||
-            stage.ActiveStepId == 1 && CollidedGameObject.tag != "Wafer") return;
 
         var step = stage.GetCurrentStep();
         step.IsDone = true;
@@ -32,9 +29,15 @@ public class StepTwo : MonoBehaviour
 
     }
 
+    private bool CanPerformStep()
+    {
+        var stage = BuildStage.GetCurrentStage();
+        return !IsDone && stage.ActiveStepId == 2;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (IsDone) return;
+        if (!CanPerformStep()) return;
 
         IsInDish = true;
         CollidedGameObject = other.gameObject;

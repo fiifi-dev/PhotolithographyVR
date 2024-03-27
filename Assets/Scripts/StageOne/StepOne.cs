@@ -25,22 +25,25 @@ public class StepOne : MonoBehaviour
     //    // Add additional logic for when the item is dropped
     //}
 
+
+    private bool CanPerformStep()
+    {
+        var stage = BuildStage.GetCurrentStage();
+        return stage.ActiveStepId == 1 && gameObject.tag == "Wafer";
+    }
+
     private void HandleSelectEntered(SelectEnterEventArgs eventArgs)
     {
 
-        if (IsDone) return;
+        if (!CanPerformStep()) return;
 
         var stage = BuildStage.GetCurrentStage();
+        var step = stage.GetCurrentStep();
+        step.IsDone = true;
 
+        stage.ActiveStepId++;
+        BuildStage.GenerateStepActions();
+        IsDone = true;
 
-        if (stage.ActiveStepId == 1 && gameObject.tag == "Wafer")
-        {
-            var step = stage.GetCurrentStep();
-            step.IsDone = true;
-
-            stage.ActiveStepId++;
-            BuildStage.GenerateStepActions();
-            IsDone = true;
-        }
     }
 }

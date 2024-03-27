@@ -18,8 +18,7 @@ public class StepFour : MonoBehaviour
         // Runs if wafer is dropped in petri dish
         var stage = BuildStage.GetCurrentStage();
 
-        if (!IsInDish || CollidedGameObject == null ||
-            stage.ActiveStepId == 3 && CollidedGameObject.tag != "Wafer") return;
+        if (!CanPerformStep()) return;
 
         var step = stage.GetCurrentStep();
         step.IsDone = true;
@@ -30,9 +29,15 @@ public class StepFour : MonoBehaviour
 
     }
 
+    private bool CanPerformStep()
+    {
+        var stage = BuildStage.GetCurrentStage();
+        return !IsDone && stage.ActiveStepId == 4;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (IsDone) return;
+        if (!CanPerformStep()) return;
 
         IsInDish = true;
         CollidedGameObject = other.gameObject;
