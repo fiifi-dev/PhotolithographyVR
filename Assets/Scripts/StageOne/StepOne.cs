@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class StepOne : MonoBehaviour
 {
     public BuildStage BuildStage;
+    private bool IsDone;
 
     private void OnEnable()
     {
@@ -26,18 +27,20 @@ public class StepOne : MonoBehaviour
 
     private void HandleSelectEntered(SelectEnterEventArgs eventArgs)
     {
+
+        if (IsDone) return;
+
         var stage = BuildStage.GetCurrentStage();
 
 
         if (stage.ActiveStepId == 1 && gameObject.tag == "Wafer")
         {
-            Debug.Log(gameObject.name + " was picked up by " + gameObject.name);
-
             var step = stage.GetCurrentStep();
             step.IsDone = true;
 
             stage.ActiveStepId++;
             BuildStage.GenerateStepActions();
+            IsDone = true;
         }
     }
 }

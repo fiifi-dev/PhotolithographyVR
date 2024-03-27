@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class StepTwo : MonoBehaviour
+public class StepFour : MonoBehaviour
 {
     public BuildStage BuildStage;
     private bool IsInDish;
     private bool IsDone;
     private GameObject CollidedGameObject;
-
 
 
     private void HandleSelectExited(SelectExitEventArgs eventArgs)
@@ -21,7 +19,7 @@ public class StepTwo : MonoBehaviour
         var stage = BuildStage.GetCurrentStage();
 
         if (!IsInDish || CollidedGameObject == null ||
-            stage.ActiveStepId == 1 && CollidedGameObject.tag != "Wafer") return;
+            stage.ActiveStepId == 3 && CollidedGameObject.tag != "Wafer") return;
 
         var step = stage.GetCurrentStep();
         step.IsDone = true;
@@ -47,6 +45,7 @@ public class StepTwo : MonoBehaviour
         CollidedGameObject = null;
         other.gameObject.GetComponent<XRGrabInteractable>().selectExited.RemoveListener(HandleSelectExited);
     }
+
 
     private void OnDestroy()
     {
