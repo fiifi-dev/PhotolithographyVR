@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wafer
+  - Left Hand
+  - Right Hand
+  - Nitrogen Gun
   layers:
   - Default
   - TransparentFX
