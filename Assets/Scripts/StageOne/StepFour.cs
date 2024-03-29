@@ -6,7 +6,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class StepFour : MonoBehaviour
 {
     public BuildStage BuildStage;
-    private bool IsInDish;
     private bool IsDone;
     private GameObject CollidedGameObject;
 
@@ -39,14 +38,12 @@ public class StepFour : MonoBehaviour
     {
         if (!CanPerformStep()) return;
 
-        IsInDish = true;
         CollidedGameObject = other.gameObject;
         other.gameObject.GetComponent<XRGrabInteractable>().selectExited.AddListener(HandleSelectExited);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        IsInDish = false;
         CollidedGameObject = null;
         other.gameObject.GetComponent<XRGrabInteractable>().selectExited.RemoveListener(HandleSelectExited);
     }

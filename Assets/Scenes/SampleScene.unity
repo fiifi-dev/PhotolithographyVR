@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 275199131}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: InstructionCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1488,6 +1488,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1656512281}
   m_SourcePrefab: {fileID: 100100000, guid: 160eaa8caced6844cb893048dcfa028d, type: 3}
+--- !u!1 &474598221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 474598222}
+  m_Layer: 0
+  m_Name: ShootSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &474598222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474598221}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0589, z: 0.0756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1526622964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &485388869
 GameObject:
   m_ObjectHideFlags: 0
@@ -3184,6 +3215,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 183950092}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd010667a3ec32340ac30092c540e79b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 474598222}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bd010667a3ec32340ac30092c540e79b,
         type: 3}
@@ -4297,6 +4332,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Particles: {fileID: 2103461750}
+  GunLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  ShootSourse: {fileID: 474598222}
+  MaxRaycastDistance: 10
 --- !u!95 &1526622973
 Animator:
   serializedVersion: 5

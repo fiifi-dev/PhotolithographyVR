@@ -8,6 +8,7 @@ TagManager:
   - Left Hand
   - Right Hand
   - Nitrogen Gun
+  - InstructionCanvas
   layers:
   - Default
   - TransparentFX

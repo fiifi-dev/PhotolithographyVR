@@ -9,10 +9,16 @@ public class NitrogenGun : MonoBehaviour
 {
     public ParticleSystem Particles;
     private Animator MAnimator;
+
+    public LayerMask GunLayerMask;
+    public Transform ShootSourse;
+    public float MaxRaycastDistance = 10;
+    private bool IsRayActivated = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
-
         MAnimator = GetComponent<Animator>();
 
         var grabInteractable = GetComponent<XRGrabInteractable>();
@@ -22,14 +28,42 @@ public class NitrogenGun : MonoBehaviour
 
     private void StopGun(DeactivateEventArgs args)
     {
-        Particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        IsRayActivated = false;
         MAnimator.SetTrigger("TrRelease");
+        Particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     private void StartGun(ActivateEventArgs args)
     {
+        IsRayActivated = true;
         MAnimator.SetTrigger("TrPull");
         Particles.Play();
+
+    }
+
+    void Update()
+    {
+        RaycastCheck();
+    }
+
+    public void RaycastCheck()
+    {
+        if (!IsRayActivated) return;
+
+        RaycastHit hit;
+
+        var hasHit = Physics.Raycast(
+            ShootSourse.position,
+            ShootSourse.forward,
+            out hit,
+            MaxRaycastDistance,
+            GunLayerMask
+            );
+
+        if (hasHit)
+        {
+            hit.transform.gameObject.SendMessage("HandleRaycastHit", SendMessageOptions.DontRequireReceiver);
+        }
 
     }
 }

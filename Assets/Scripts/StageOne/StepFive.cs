@@ -1,18 +1,39 @@
+using PhotolithographyVR;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StepFive : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private BuildStage BuildStage;
+    private bool IsDone;
+
+     void Start()
     {
-        
+        BuildStage = GameObject.FindWithTag("InstructionCanvas").GetComponent<BuildStage>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void HandleRaycastHit()
     {
-        
+        if (IsDone) return;
+
+        // Runs if wafer is dropped in petri dish
+        var stage = BuildStage.GetCurrentStage();
+
+        if (!CanPerformStep()) return;
+
+        var step = stage.GetCurrentStep();
+        step.IsDone = true;
+
+        stage.ActiveStepId++;
+        BuildStage.GenerateStepActions();
+        IsDone = true;
+    }
+
+    private bool CanPerformStep()
+    {
+        var stage = BuildStage.GetCurrentStage();
+        return !IsDone && stage.ActiveStepId == 5;
     }
 }

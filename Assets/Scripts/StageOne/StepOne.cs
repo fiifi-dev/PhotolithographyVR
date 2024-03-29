@@ -6,25 +6,15 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class StepOne : MonoBehaviour
 {
     public BuildStage BuildStage;
-    private bool IsDone;
 
     private void OnEnable()
     {
-        GetComponent<XRGrabInteractable>().selectEntered.AddListener(HandleSelectEntered);
-        //GetComponent<XRGrabInteractable>().selectExited.AddListener(HandleSelectExited);
+        PickedDropped.OnPicked += HandleSelectEntered;
     }
     private void OnDisable()
     {
-        GetComponent<XRGrabInteractable>().selectEntered.RemoveListener(HandleSelectEntered);
-        //GetComponent<XRGrabInteractable>().selectExited.RemoveListener(HandleSelectExited);
+        PickedDropped.OnPicked -= HandleSelectEntered;
     }
-
-    //private void HandleSelectExited(SelectExitEventArgs eventArgs)
-    //{
-    //    Debug.Log(gameObject.name + " was dropped by " + gameObject.name);
-    //    // Add additional logic for when the item is dropped
-    //}
-
 
     private bool CanPerformStep()
     {
@@ -32,7 +22,7 @@ public class StepOne : MonoBehaviour
         return stage.ActiveStepId == 1 && gameObject.tag == "Wafer";
     }
 
-    private void HandleSelectEntered(SelectEnterEventArgs eventArgs)
+    private void HandleSelectEntered()
     {
 
         if (!CanPerformStep()) return;
@@ -43,7 +33,5 @@ public class StepOne : MonoBehaviour
 
         stage.ActiveStepId++;
         BuildStage.GenerateStepActions();
-        IsDone = true;
-
     }
 }
