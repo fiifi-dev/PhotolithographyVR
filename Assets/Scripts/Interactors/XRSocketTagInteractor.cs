@@ -6,8 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class XRSocketTagInteractor : XRSocketInteractor
 {
-    public static event Action OnInside;
-    public static event Action OnOutside;
+    public static event Action<SelectEnterEventArgs> OnInside;
+    public static event Action<SelectExitEventArgs> OnOutside;
 
     public string TargetTag;
 
@@ -31,13 +31,13 @@ public class XRSocketTagInteractor : XRSocketInteractor
         base.OnDisable();
     }
 
-    private void HandleSocketExit(SelectExitEventArgs arg0)
+    private void HandleSocketExit(SelectExitEventArgs args)
     {
-        OnOutside?.Invoke();
+        OnOutside?.Invoke(args);
     }
 
-    private void HandleSocketEnter(SelectEnterEventArgs arg0)
+    private void HandleSocketEnter(SelectEnterEventArgs args)
     {
-        OnInside?.Invoke();
+        OnInside?.Invoke(args);
     }
 }

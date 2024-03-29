@@ -11,9 +11,18 @@ public class StepTwo : MonoBehaviour
     private bool IsDone;
     private GameObject CollidedGameObject;
 
+    private void OnEnable()
+    {
+        XRSocketTagInteractor.OnInside += HandleSelectExited;
+    }
+
+    private void OnDisable()
+    {
+        XRSocketTagInteractor.OnInside += HandleSelectExited;
+    }
 
 
-    private void HandleSelectExited(SelectExitEventArgs eventArgs)
+    private void HandleSelectExited(SelectEnterEventArgs eventArgs)
     {
         if (!CanPerformStep()) return;
 
@@ -34,30 +43,4 @@ public class StepTwo : MonoBehaviour
         var stage = BuildStage.GetCurrentStage();
         return !IsDone && stage.ActiveStepId == 2;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!CanPerformStep()) return;
-
-        IsInDish = true;
-        CollidedGameObject = other.gameObject;
-        other.gameObject.GetComponent<XRGrabInteractable>().selectExited.AddListener(HandleSelectExited);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        IsInDish = false;
-        CollidedGameObject = null;
-        other.gameObject.GetComponent<XRGrabInteractable>().selectExited.RemoveListener(HandleSelectExited);
-    }
-
-    private void OnDestroy()
-    {
-        if (CollidedGameObject != null)
-        {
-            CollidedGameObject.GetComponent<XRGrabInteractable>().selectExited.RemoveListener(HandleSelectExited);
-        }
-    }
-
-
 }
