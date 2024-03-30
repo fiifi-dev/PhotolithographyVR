@@ -6,11 +6,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class PerformStep : MonoBehaviour
 {
     public BuildStage BuildStage;
-    private bool IsDone;
-    private bool IsTimedCorrectly;
-    private GameObject ProgressGameObject;
+    protected bool IsDone;
+    protected bool IsTimedCorrectly;
+    protected GameObject ProgressGameObject;
 
-    private void OnEnable()
+
+
+    void OnEnable()
     {
         XRSocketTagInteractor.OnInside += HandleItemInsideBowl;
         XRSocketTagInteractor.OnOutside += HandleItemOutsideBowl;
@@ -18,25 +20,25 @@ public class PerformStep : MonoBehaviour
         ProgressGameObject = GetProgressBarObject();
     }
 
-    private void HandleProgressComplete()
+    void HandleProgressComplete()
     {
         IsTimedCorrectly = true;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         XRSocketTagInteractor.OnInside -= HandleItemInsideBowl;
         XRSocketTagInteractor.OnOutside -= HandleItemOutsideBowl;
         HandleProgressBar.OnComplete -= HandleProgressComplete;
     }
 
-    private void HandleItemOutsideBowl(SelectExitEventArgs args)
+    void HandleItemOutsideBowl(SelectExitEventArgs args)
     {
         ProgressGameObject.SetActive(false);
     }
 
 
-    private void HandleItemInsideBowl(SelectEnterEventArgs args)
+    void HandleItemInsideBowl(SelectEnterEventArgs args)
     {
         ProgressGameObject.SetActive(true);
         if (!CanPerformStep()) return;
@@ -59,7 +61,7 @@ public class PerformStep : MonoBehaviour
         return gameObject.transform.parent.parent.GetChild(2).gameObject;
     }
 
-    private bool CanPerformStep()
+    bool CanPerformStep()
     {
         var stage = BuildStage.GetCurrentStage();
         return !IsDone && stage.ActiveStepId == 2 && !IsTimedCorrectly;
