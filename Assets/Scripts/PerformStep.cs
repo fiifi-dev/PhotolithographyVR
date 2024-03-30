@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class StepTwo : MonoBehaviour
+public class PerformStep : MonoBehaviour
 {
     public BuildStage BuildStage;
     private bool IsDone;
@@ -14,31 +12,31 @@ public class StepTwo : MonoBehaviour
 
     private void OnEnable()
     {
-        XRSocketTagInteractor.OnInside += HandleGrabEnter;
-        XRSocketTagInteractor.OnOutside += HandleGrabExit;
+        XRSocketTagInteractor.OnInside += HandleItemInsideBowl;
+        XRSocketTagInteractor.OnOutside += HandleItemOutsideBowl;
         HandleProgressBar.OnComplete += HandleProgressComplete;
         ProgressGameObject = GetProgressBarObject();
     }
 
     private void HandleProgressComplete()
     {
-       IsTimedCorrectly = true;
+        IsTimedCorrectly = true;
     }
 
     private void OnDisable()
     {
-        XRSocketTagInteractor.OnInside -= HandleGrabEnter;
-        XRSocketTagInteractor.OnOutside -= HandleGrabExit;
+        XRSocketTagInteractor.OnInside -= HandleItemInsideBowl;
+        XRSocketTagInteractor.OnOutside -= HandleItemOutsideBowl;
         HandleProgressBar.OnComplete -= HandleProgressComplete;
     }
 
-    private void HandleGrabExit(SelectExitEventArgs args)
+    private void HandleItemOutsideBowl(SelectExitEventArgs args)
     {
         ProgressGameObject.SetActive(false);
     }
 
 
-    private void HandleGrabEnter(SelectEnterEventArgs args)
+    private void HandleItemInsideBowl(SelectEnterEventArgs args)
     {
         ProgressGameObject.SetActive(true);
         if (!CanPerformStep()) return;

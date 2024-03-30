@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 4006820660340460084}
   - component: {fileID: 8694594186667470971}
   - component: {fileID: 2718165655750273130}
+  - component: {fileID: 3068320349443619760}
   m_Layer: 5
   m_Name: ProgressBar
   m_TagString: Untagged
@@ -104,7 +105,7 @@ RectTransform:
   m_GameObject: {fileID: 3793394160850888264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.71}
-  m_LocalScale: {x: 0.0014303724, y: 0.0014303724, z: 0.0014303724}
+  m_LocalScale: {x: 0.0014303724, y: 0.0016161777, z: 0.0014303724}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6368472566447707472}
@@ -180,6 +181,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3068320349443619760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793394160850888264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaef7054c5d08dd41b3a9bb1a218f687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProgressText: 100%
+  DelaySeconds: 10
 --- !u!1 &5692739269090140650
 GameObject:
   m_ObjectHideFlags: 0
