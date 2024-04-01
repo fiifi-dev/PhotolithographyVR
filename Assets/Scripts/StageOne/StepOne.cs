@@ -5,7 +5,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class StepOne : MonoBehaviour
 {
-    public BuildStage BuildStage;
+    public StageScriptableObject Stage;
+    private bool IsDone;
+
+
 
     private void OnEnable()
     {
@@ -18,20 +21,21 @@ public class StepOne : MonoBehaviour
 
     private bool CanPerformStep()
     {
-        var stage = BuildStage.GetCurrentStage();
-        return stage.ActiveStepId == 1 && gameObject.tag == "Wafer";
+        var stage = Stage.GetCurrentStage();
+
+        return !IsDone && stage.ActiveStepId == 1;
     }
 
-    private void HandleSelectEntered()
+    private void HandleSelectEntered(SelectEnterEventArgs args)
     {
 
         if (!CanPerformStep()) return;
 
-        var stage = BuildStage.GetCurrentStage();
+        var stage = Stage.GetCurrentStage();
         var step = stage.GetCurrentStep();
         step.IsDone = true;
 
         stage.ActiveStepId++;
-        BuildStage.GenerateStepActions();
+        IsDone = true;
     }
 }

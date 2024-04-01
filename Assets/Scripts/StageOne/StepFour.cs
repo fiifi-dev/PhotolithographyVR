@@ -5,17 +5,19 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class StepFour : MonoBehaviour
 {
-    public BuildStage BuildStage;
+    public StageScriptableObject StageScriptable;
     private bool IsDone;
     private GameObject CollidedGameObject;
 
 
-    private void HandleSelectExited(SelectExitEventArgs eventArgs)
+    private void HandleSelectExited(SelectExitEventArgs args)
     {
+        if (args.interactorObject.transform.tag != "Bowl3") return;
+
         if (IsDone) return;
 
         // Runs if wafer is dropped in petri dish
-        var stage = BuildStage.GetCurrentStage();
+        var stage = StageScriptable.GetCurrentStage();
 
         if (!CanPerformStep()) return;
 
@@ -23,14 +25,13 @@ public class StepFour : MonoBehaviour
         step.IsDone = true;
 
         stage.ActiveStepId++;
-        BuildStage.GenerateStepActions();
         IsDone = true;
 
     }
 
     private bool CanPerformStep()
     {
-        var stage = BuildStage.GetCurrentStage();
+        var stage = StageScriptable.GetCurrentStage();
         return !IsDone && stage.ActiveStepId == 4;
     }
 

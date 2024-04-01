@@ -5,13 +5,8 @@ using UnityEngine;
 
 public class StepFive : MonoBehaviour
 {
-    private BuildStage BuildStage;
+    public StageScriptableObject StageScriptable;
     private bool IsDone;
-
-     void Start()
-    {
-        BuildStage = GameObject.FindWithTag("InstructionCanvas").GetComponent<BuildStage>();
-    }
 
 
     void HandleRaycastHit()
@@ -19,7 +14,7 @@ public class StepFive : MonoBehaviour
         if (IsDone) return;
 
         // Runs if wafer is dropped in petri dish
-        var stage = BuildStage.GetCurrentStage();
+        var stage = StageScriptable.GetCurrentStage();
 
         if (!CanPerformStep()) return;
 
@@ -27,13 +22,12 @@ public class StepFive : MonoBehaviour
         step.IsDone = true;
 
         stage.ActiveStepId++;
-        BuildStage.GenerateStepActions();
         IsDone = true;
     }
 
     private bool CanPerformStep()
     {
-        var stage = BuildStage.GetCurrentStage();
+        var stage = StageScriptable.GetCurrentStage();
         return !IsDone && stage.ActiveStepId == 5;
     }
 }

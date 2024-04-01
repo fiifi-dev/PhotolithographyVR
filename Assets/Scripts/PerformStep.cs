@@ -61,7 +61,7 @@ public class PerformStep : MonoBehaviour
         return gameObject.transform.parent.parent.GetChild(2).gameObject;
     }
 
-   public virtual bool CanPerformStep()
+   public virtual bool  CanPerformStep()
     {
         var stage = BuildStage.GetCurrentStage();
         return !IsDone && stage.ActiveStepId == 2 && !IsTimedCorrectly;

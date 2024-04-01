@@ -5,18 +5,18 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class StepThree : MonoBehaviour
 {
-    public BuildStage BuildStage;
-    private bool IsInDish;
+    public StageScriptableObject StageScriptable;
     private bool IsDone;
     private GameObject CollidedGameObject;
 
 
-    private void HandleSelectExited(SelectExitEventArgs eventArgs)
+    private void HandleSelectExited(SelectExitEventArgs args)
     {
+        if (args.interactorObject.transform.tag != "Bowl2") return;
         if (IsDone) return;
 
         // Runs if wafer is dropped in petri dish
-        var stage = BuildStage.GetCurrentStage();
+        var stage = StageScriptable.GetCurrentStage();
 
         if (!CanPerformStep()) return;
 
@@ -24,14 +24,13 @@ public class StepThree : MonoBehaviour
         step.IsDone = true;
 
         stage.ActiveStepId++;
-        BuildStage.GenerateStepActions();
         IsDone = true;
 
     }
 
     private bool CanPerformStep()
     {
-        var stage = BuildStage.GetCurrentStage();
+        var stage = StageScriptable.GetCurrentStage();
         return !IsDone && stage.ActiveStepId == 3;
     }
 
@@ -40,14 +39,12 @@ public class StepThree : MonoBehaviour
     {
         if (!CanPerformStep()) return;
 
-        IsInDish = true;
         CollidedGameObject = other.gameObject;
         other.gameObject.GetComponent<XRGrabInteractable>().selectExited.AddListener(HandleSelectExited);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        IsInDish = false;
         CollidedGameObject = null;
         other.gameObject.GetComponent<XRGrabInteractable>().selectExited.RemoveListener(HandleSelectExited);
     }

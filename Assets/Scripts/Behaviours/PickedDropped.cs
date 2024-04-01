@@ -6,8 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class PickedDropped : MonoBehaviour
 {
-    public static event Action OnDropped;
-    public static event Action OnPicked;
+    public static event Action<SelectExitEventArgs> OnDropped;
+    public static event Action<SelectEnterEventArgs> OnPicked;
 
     private void OnEnable()
     {
@@ -23,11 +23,11 @@ public class PickedDropped : MonoBehaviour
 
     private void HandleSelectExited(SelectExitEventArgs args)
     {
-        OnDropped?.Invoke();
+        OnDropped?.Invoke(args);
     }
 
     private void HandleSelectEntered(SelectEnterEventArgs args)
     {
-        OnPicked?.Invoke();
+        OnPicked?.Invoke(args);
     }
 }

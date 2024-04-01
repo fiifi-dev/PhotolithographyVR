@@ -9,6 +9,9 @@ TagManager:
   - Right Hand
   - Nitrogen Gun
   - InstructionCanvas
+  - Bowl1
+  - Bowl2
+  - Bowl3
   layers:
   - Default
   - TransparentFX
