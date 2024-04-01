@@ -8,24 +8,39 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class StepTwo : MonoBehaviour
 {
     public StageScriptableObject StageScriptable;
+    public ProgressBarScriptableObject ProgressBarScriptable;
+
     private bool IsDone;
 
     private void OnEnable()
     {
-        XRSocketTagInteractor.OnInside += HandleGrabEnter;
+        ProgressBarScriptable.SetInstance(gameObject.transform.parent.parent.GetChild(2).gameObject);
+        XRSocketTagInteractor.OnOutside += HandleGrabEnter;
+        XRSocketTagInteractor.OnInside += HandleGrabExit;
     }
 
     private void OnDisable()
     {
-        XRSocketTagInteractor.OnInside -= HandleGrabEnter;
+        XRSocketTagInteractor.OnOutside -= HandleGrabEnter;
+        XRSocketTagInteractor.OnInside -= HandleGrabExit;
     }
 
-    private void HandleGrabEnter(SelectEnterEventArgs args)
+    private void HandleGrabExit(SelectEnterEventArgs args)
     {
+        ProgressBarScriptable.Enable();
+        StartCoroutine(ProgressBarScriptable.Tween());
+    }
+
+    private void HandleGrabEnter(SelectExitEventArgs args)
+    {
+        StopCoroutine(ProgressBarScriptable.Tween());
+        ProgressBarScriptable.Disable();
+
         if(args.interactorObject.transform.tag != "Bowl1") return;
 
         if (!CanPerformStep()) return;
 
+        
 
         // Runs if wafer is dropped in petri dish
         var stage = StageScriptable.GetCurrentStage();
@@ -40,7 +55,6 @@ public class StepTwo : MonoBehaviour
     private bool CanPerformStep()
     {
         var stage = StageScriptable.GetCurrentStage();
-        Debug.Log(stage.ActiveStepId);
         return !IsDone && stage.ActiveStepId == 2;
     }
 }

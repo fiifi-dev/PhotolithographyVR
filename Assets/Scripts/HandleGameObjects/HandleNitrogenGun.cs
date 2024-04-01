@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class NitrogenGun : MonoBehaviour
+public class HandleNitrogenGun : MonoBehaviour
 {
     public ParticleSystem Particles;
     private Animator MAnimator;

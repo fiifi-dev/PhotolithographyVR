@@ -1,16 +1,27 @@
-using PhotolithographyVR;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class StepFive : MonoBehaviour
+public class StepThree : MonoBehaviour
 {
     public StageScriptableObject StageScriptable;
     private bool IsDone;
 
-
-    void HandleRaycastHit()
+    private void OnEnable()
     {
+        XRSocketTagInteractor.OnOutside += HandleSelectExited;
+    }
+
+    private void OnDisable()
+    {
+        XRSocketTagInteractor.OnOutside -= HandleSelectExited;
+    }
+
+
+    private void HandleSelectExited(SelectExitEventArgs args)
+    {
+        if (args.interactorObject.transform.tag != "Bowl2") return;
         if (IsDone) return;
 
         // Runs if wafer is dropped in petri dish
@@ -23,11 +34,12 @@ public class StepFive : MonoBehaviour
 
         stage.ActiveStepId++;
         IsDone = true;
+
     }
 
     private bool CanPerformStep()
     {
         var stage = StageScriptable.GetCurrentStage();
-        return !IsDone && stage.ActiveStepId == 5;
+        return !IsDone && stage.ActiveStepId == 3;
     }
 }

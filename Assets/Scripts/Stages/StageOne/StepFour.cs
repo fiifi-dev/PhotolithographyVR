@@ -7,7 +7,16 @@ public class StepFour : MonoBehaviour
 {
     public StageScriptableObject StageScriptable;
     private bool IsDone;
-    private GameObject CollidedGameObject;
+
+    private void OnEnable()
+    {
+        XRSocketTagInteractor.OnOutside += HandleSelectExited;
+    }
+
+    private void OnDisable()
+    {
+        XRSocketTagInteractor.OnOutside -= HandleSelectExited;
+    }
 
 
     private void HandleSelectExited(SelectExitEventArgs args)
@@ -34,29 +43,4 @@ public class StepFour : MonoBehaviour
         var stage = StageScriptable.GetCurrentStage();
         return !IsDone && stage.ActiveStepId == 4;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!CanPerformStep()) return;
-
-        CollidedGameObject = other.gameObject;
-        other.gameObject.GetComponent<XRGrabInteractable>().selectExited.AddListener(HandleSelectExited);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        CollidedGameObject = null;
-        other.gameObject.GetComponent<XRGrabInteractable>().selectExited.RemoveListener(HandleSelectExited);
-    }
-
-
-    private void OnDestroy()
-    {
-        if (CollidedGameObject != null)
-        {
-            CollidedGameObject.GetComponent<XRGrabInteractable>().selectExited.RemoveListener(HandleSelectExited);
-        }
-    }
-
-
 }
