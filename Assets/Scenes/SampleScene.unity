@@ -525,6 +525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+  ProgressBarScriptable: {fileID: 11400000, guid: 6c1269521cba7564e9b781b90341c202,
+    type: 2}
 --- !u!1001 &175826994
 PrefabInstance:
   m_ObjectHideFlags: 0
