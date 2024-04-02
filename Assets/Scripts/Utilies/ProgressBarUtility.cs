@@ -5,10 +5,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "ProgressBarScriptableObject", menuName = "ScriptableObject/ProgressBar")]
-public class ProgressBarScriptableObject : ScriptableObject
+
+public class ProgressBarUtility
 {
-    private GameObject ProgressObject;
+    private  GameObject ProgressObject;
 
     public static event Action<float> OnProgressChange;
     public static event Action OnComplete;
@@ -18,10 +18,11 @@ public class ProgressBarScriptableObject : ScriptableObject
     private int Count { set; get; }
 
 
-    public void SetInstance(GameObject gameObject)
+   public ProgressBarUtility(GameObject progressGameObject)
     {
-        ProgressObject = gameObject;
+        ProgressObject = progressGameObject;
     }
+
 
     public void Enable()
     {
@@ -89,9 +90,11 @@ public class ProgressBarScriptableObject : ScriptableObject
             Count++;
             SetProgress(amount);
 
-            if (amount >= 1) {
+            if (amount >= 1)
+            {
                 SetText("Done.");
-                yield break; }
+                yield break;
+            }
 
         }
     }

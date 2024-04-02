@@ -4413,6 +4413,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+  ProgressBarScriptable: {fileID: 11400000, guid: 6c1269521cba7564e9b781b90341c202,
+    type: 2}
 --- !u!4 &1603950440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9204785679073840710, guid: 53c4466de15df1943ae895b084a80522,
@@ -4450,6 +4452,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+  ProgressBarScriptable: {fileID: 11400000, guid: 6c1269521cba7564e9b781b90341c202,
+    type: 2}
 --- !u!4 &1675762177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 109434732395451517, guid: 65847589f926b734d9eaed6e25f0046b,
