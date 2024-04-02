@@ -80,6 +80,8 @@ public class ProgressBarScriptableObject : ScriptableObject
         float amount = 0;
         float step = 1;
 
+        SetText("Progressing...");
+
         while (true)
         {
             yield return new WaitForSeconds(step);
@@ -87,7 +89,9 @@ public class ProgressBarScriptableObject : ScriptableObject
             Count++;
             SetProgress(amount);
 
-            if (amount >= 1) yield break;
+            if (amount >= 1) {
+                SetText("Done.");
+                yield break; }
 
         }
     }

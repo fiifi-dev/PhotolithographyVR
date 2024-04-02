@@ -17,31 +17,11 @@ public class StepTwo : MonoBehaviour
         ProgressBarScriptable.SetInstance(gameObject.transform.parent.parent.GetChild(2).gameObject);
         XRSocketTagInteractor.OnOutside += HandleGrabEnter;
         XRSocketTagInteractor.OnInside += HandleGrabExit;
+        HandleProgressBar.OnComplete += HandleOnComplete;
     }
 
-    private void OnDisable()
+    private void HandleOnComplete()
     {
-        XRSocketTagInteractor.OnOutside -= HandleGrabEnter;
-        XRSocketTagInteractor.OnInside -= HandleGrabExit;
-    }
-
-    private void HandleGrabExit(SelectEnterEventArgs args)
-    {
-        ProgressBarScriptable.Enable();
-        StartCoroutine(ProgressBarScriptable.Tween());
-    }
-
-    private void HandleGrabEnter(SelectExitEventArgs args)
-    {
-        StopCoroutine(ProgressBarScriptable.Tween());
-        ProgressBarScriptable.Disable();
-
-        if(args.interactorObject.transform.tag != "Bowl1") return;
-
-        if (!CanPerformStep()) return;
-
-        
-
         // Runs if wafer is dropped in petri dish
         var stage = StageScriptable.GetCurrentStage();
 
@@ -49,7 +29,42 @@ public class StepTwo : MonoBehaviour
         step.IsDone = true;
         stage.ActiveStepId++;
         IsDone = true;
+    }
 
+    private void OnDisable()
+    {
+        XRSocketTagInteractor.OnOutside -= HandleGrabEnter;
+        XRSocketTagInteractor.OnInside -= HandleGrabExit;
+        HandleProgressBar.OnComplete -= HandleOnComplete;
+    }
+
+    private void HandleGrabExit(SelectEnterEventArgs args)
+    {
+        if (args.interactorObject.transform.tag != "Bowl1") return;
+        EnablepProgress();
+    }
+
+    private void EnablepProgress()
+    {
+        ProgressBarScriptable.Enable();
+        StartCoroutine(ProgressBarScriptable.Tween());
+    }
+
+    private void HandleGrabEnter(SelectExitEventArgs args)
+    {
+        DisableProgress();
+
+        if (args.interactorObject.transform.tag != "Bowl1") return;
+
+        if (!CanPerformStep()) return;
+
+
+    }
+
+    private void DisableProgress()
+    {
+        StopCoroutine(ProgressBarScriptable.Tween());
+        ProgressBarScriptable.Disable();
     }
 
     private bool CanPerformStep()
