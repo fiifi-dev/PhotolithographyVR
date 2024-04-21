@@ -7,7 +7,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StageScriptableObject", menuName = "ScriptableObject/Stage")]
 public class StageScriptableObject : ScriptableObject
 {
-    private int ActiveStageId = 1;
+    public int ActiveStageId { get; set; } = 1;
+    public int ActiveStepId { get; set; } = 1;
     private List<Stage> Stages = new();
 
     private Dictionary<string, List<string>> InitialStages = new() {
@@ -26,7 +27,7 @@ public class StageScriptableObject : ScriptableObject
         }
     };
 
-    StageScriptableObject()
+    StageScriptableObject(): base()
     {
         int i = 1, j;
 
@@ -43,7 +44,6 @@ public class StageScriptableObject : ScriptableObject
 
             Stages.Add(stage);
             i++;
-
         }
     }
 
@@ -68,16 +68,30 @@ public class StageScriptableObject : ScriptableObject
 
     public Stage GetCurrentStage()
     {
-        return Stages.Find(x => x.StageId == ActiveStageId);
+        var stage = Stages.Find(x => x.StageId == ActiveStageId);
+        return stage;
+    }
+
+    public List<Step> GetCurrentStageSteps()
+    {
+        return GetCurrentStage().Steps;
+    }
+
+    public Step GetCurrentStep()
+    {
+        return GetCurrentStageSteps().Find(x => x.StepId == ActiveStepId);
     }
 
     public void SetNextStage()
     {
         if (ActiveStageId >= Stages.Count) return;
         ActiveStageId++;
+        ActiveStepId = 1;
     }
 
-
-
-
+    public void SetNextStep()
+    {
+        if (ActiveStepId >= GetCurrentStageSteps().Count) return;
+        ActiveStepId++;
+    }
 }

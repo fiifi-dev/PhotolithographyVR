@@ -5,10 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class StepOne : MonoBehaviour
 {
-    public StageScriptableObject Stage;
-    private bool IsDone;
-
-
+    public StageScriptableObject StageScriptable;
 
     private void OnEnable()
     {
@@ -21,9 +18,8 @@ public class StepOne : MonoBehaviour
 
     private bool CanPerformStep()
     {
-        var stage = Stage.GetCurrentStage();
-
-        return !IsDone && stage.ActiveStepId == 1;
+        var step = StageScriptable.GetCurrentStep();
+        return !step.IsDone && step.StepId == 1;
     }
 
     private void HandleSelectEntered(SelectEnterEventArgs args)
@@ -31,11 +27,9 @@ public class StepOne : MonoBehaviour
 
         if (!CanPerformStep()) return;
 
-        var stage = Stage.GetCurrentStage();
-        var step = stage.GetCurrentStep();
+        var step = StageScriptable.GetCurrentStep();
         step.IsDone = true;
 
-        stage.ActiveStepId++;
-        IsDone = true;
+        StageScriptable.SetNextStep();
     }
 }

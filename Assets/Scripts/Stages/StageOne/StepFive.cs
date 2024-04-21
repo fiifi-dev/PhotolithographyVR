@@ -8,7 +8,6 @@ public class StepFive : MonoBehaviour, IProgressBar
     public StageScriptableObject StageScriptable;
     private bool HasProgressBar { get; set; } = true;
     private bool HasHit;
-    private bool IsDone;
     private bool IsStepFive { get; set; }
 
     private void OnEnable()
@@ -46,20 +45,15 @@ public class StepFive : MonoBehaviour, IProgressBar
     public void HandleOnComplete()
     {
         // Runs if wafer is dropped in petri dish
-        var stage = StageScriptable.GetCurrentStage();
-
         if (!CanPerformStep()) return;
-        var step = stage.GetCurrentStep();
+        var step = StageScriptable.GetCurrentStep();
         step.IsDone = true;
-        IsDone = true;
-
-        Debug.Log("Step: " + step.StepId + " IsDone: " + IsDone);
     }
 
     private bool CanPerformStep()
     {
-        var stage = StageScriptable.GetCurrentStage();
-        return IsStepFive && !IsDone && stage.ActiveStepId == 5;
+        var step = StageScriptable.GetCurrentStep();
+        return IsStepFive && !step.IsDone && step.StepId == 4;
     }
 
 

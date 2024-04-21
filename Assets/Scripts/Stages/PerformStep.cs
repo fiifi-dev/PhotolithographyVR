@@ -32,12 +32,10 @@ public class PerformStep : MonoBehaviour, IProgressBar, IObjectLocation
     {
         if (!IsWorkingStep || !CanPerformStep()) return;
 
-        // Runs if wafer is dropped in petri dish
-        var stage = StageScriptable.GetCurrentStage();
-
-        var step = stage.GetCurrentStep();
+        // Runs if wafer is dropped in petri 
+        var step = StageScriptable.GetCurrentStep();
         step.IsDone = true;
-        stage.ActiveStepId++;
+        StageScriptable.SetNextStep();
         IsDone = true;
     }
 
@@ -74,8 +72,8 @@ public class PerformStep : MonoBehaviour, IProgressBar, IObjectLocation
 
     public virtual bool CanPerformStep()
     {
-        var stage = StageScriptable.GetCurrentStage();
-        return !IsDone && stage.ActiveStepId == 2;
+        var step = StageScriptable.GetCurrentStep();
+        return !step.IsDone && step.StepId == 2;
     }
 
 

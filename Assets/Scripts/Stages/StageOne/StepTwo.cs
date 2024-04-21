@@ -10,7 +10,7 @@ public class StepTwo : PerformStep
     protected override string BOWL_TAG { get => "Bowl1"; }
     public override bool CanPerformStep()
     {
-        var stage = StageScriptable.GetCurrentStage();
-        return !IsDone && stage.ActiveStepId == 2;
+        var step = StageScriptable.GetCurrentStep();
+        return !step.IsDone && step.StepId == 2;
     }
 }

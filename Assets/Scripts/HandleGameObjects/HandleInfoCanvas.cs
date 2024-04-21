@@ -9,10 +9,10 @@ using UnityEngine.UI;
 
 public class HandleInfoCanvas : MonoBehaviour
 {
-    public StageScriptableObject Stage;
+    public StageScriptableObject StageScriptable;
     public GameObject CanvasObject;
     public GameObject TextPrefab;
-    private ProgressBarUtility ProgressUtility;
+
     // LabelComponents
     public GameObject LabelPrefab;
     public Texture CheckedTexture;
@@ -39,6 +39,7 @@ public class HandleInfoCanvas : MonoBehaviour
 
     public void RenderSteps()
     {
+
         // Clean created instances 
         while (LabelInstances.Count > 0)
         {
@@ -46,7 +47,8 @@ public class HandleInfoCanvas : MonoBehaviour
         }
 
         // Render new stage and steps
-        var stage = Stage.GetCurrentStage();
+        var stage = StageScriptable.GetCurrentStage();
+        
         var pos = 10f;
 
         var titleObject =  AddTitleObject(stage.Title, new Vector3(50, pos, 0));
@@ -97,7 +99,7 @@ public class HandleInfoCanvas : MonoBehaviour
         // Update content
         textObj.text = step.Title;
         imageObj.texture = step.IsDone ? CheckedDoneTexture : CheckedTexture;
-        textObj.color = step.StepId == stage.ActiveStepId ? Color.white : Color.gray;
+        textObj.color = step.StepId == StageScriptable.ActiveStepId ? Color.white : Color.gray;
 
         // place component
         var transform = labelObject.GetComponent<Transform>();
