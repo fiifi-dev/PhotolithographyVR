@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PerformStep : MonoBehaviour
+public class PerformStep : MonoBehaviour, IProgressBar, IObjectLocation
 {
     public StageScriptableObject StageScriptable;
-    private ProgressBarUtility ProgressUtility;
 
     public bool IsDone { get; set; }
-    public bool IsWorkingContainer { get; set; }
+    public bool IsWorkingStep { get; set; }
     protected virtual string BOWL_TAG { get; }
     private bool HasProgressBar { get; set; }
 
@@ -17,22 +16,21 @@ public class PerformStep : MonoBehaviour
 
     private void OnEnable()
     {
-        SetProgress();
         XRSocketTagInteractor.OnOutside += HandleOnObjectOutside;
         XRSocketTagInteractor.OnInside += HandleOnObjectInside;
-        HandleProgressBar.OnComplete += HandleOnComplete;
+        ProgressBarUtility.OnComplete += HandleOnComplete;
     }
 
     private void OnDisable()
     {
         XRSocketTagInteractor.OnOutside -= HandleOnObjectOutside;
         XRSocketTagInteractor.OnInside -= HandleOnObjectInside;
-        HandleProgressBar.OnComplete -= HandleOnComplete;
+        ProgressBarUtility.OnComplete -= HandleOnComplete;
     }
 
     public virtual void HandleOnComplete()
     {
-        if (!IsWorkingContainer || !CanPerformStep()) return;
+        if (!IsWorkingStep || !CanPerformStep()) return;
 
         // Runs if wafer is dropped in petri dish
         var stage = StageScriptable.GetCurrentStage();
@@ -47,9 +45,9 @@ public class PerformStep : MonoBehaviour
     public virtual void HandleOnObjectInside(SelectEnterEventArgs args)
     {
         var tag = args.interactorObject.transform.tag;
-        IsWorkingContainer = tag == BOWL_TAG;
+        IsWorkingStep = tag == BOWL_TAG;
 
-        if (!IsWorkingContainer) return;
+        if (!IsWorkingStep) return;
 
         EnablepProgress();
     }
@@ -60,27 +58,18 @@ public class PerformStep : MonoBehaviour
     }
 
 
-    public virtual void SetProgress()
-    {
-        var parentObj = gameObject.transform.parent.parent;
-        var progressObj = parentObj.GetChild(2).gameObject;
-        if (progressObj == null) return;
-        HasProgressBar = true;
-        ProgressUtility = new ProgressBarUtility(progressObj);
-    }
-
     public virtual void EnablepProgress()
     {
-        if (!IsWorkingContainer || !HasProgressBar) return;
-        ProgressUtility.Enable();
-        StartCoroutine(ProgressUtility.Tween());
+        if (!IsWorkingStep) return;
+        ProgressBarUtility.Enable();
+        StartCoroutine(ProgressBarUtility.Tween());
     }
 
     public virtual void DisableProgress()
     {
-        if (!IsWorkingContainer || !HasProgressBar) return;
-        StopCoroutine(ProgressUtility.Tween());
-        ProgressUtility.Disable();
+        if (!IsWorkingStep || !HasProgressBar) return;
+        StopCoroutine(ProgressBarUtility.Tween());
+        ProgressBarUtility.Disable();
     }
 
     public virtual bool CanPerformStep()

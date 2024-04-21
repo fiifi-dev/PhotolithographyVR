@@ -7,6 +7,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandleNitrogenGun : MonoBehaviour
 {
+    public static Action<GameObject, bool> OnHitAcivate; // hitObject and isHit
+    public bool HasHit;
+
+
     public ParticleSystem Particles;
     private Animator MAnimator;
 
@@ -14,6 +18,8 @@ public class HandleNitrogenGun : MonoBehaviour
     public Transform ShootSourse;
     public float MaxRaycastDistance = 10;
     private bool IsRayActivated = false;
+
+
 
 
     // Start is called before the first frame update
@@ -60,10 +66,7 @@ public class HandleNitrogenGun : MonoBehaviour
             GunLayerMask
             );
 
-        if (hasHit)
-        {
-            hit.transform.gameObject.SendMessage("HandleRaycastHit", SendMessageOptions.DontRequireReceiver);
-        }
-
+        var obj = hit.transform.gameObject;
+        OnHitAcivate?.Invoke(obj, hasHit);
     }
 }

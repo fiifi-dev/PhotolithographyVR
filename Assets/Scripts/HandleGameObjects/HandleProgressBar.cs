@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class HandleProgressBar : MonoBehaviour
 {
-    public static event Action<float> OnProgressChange;
+    public static event Action<float, bool> OnProgressChange; // value , isComplete
     public static event Action OnComplete;
+
     public string ProgressText = "100%";
     public float DelaySeconds = 10;
 
@@ -63,7 +64,7 @@ public class HandleProgressBar : MonoBehaviour
         var imageComponent = GetProgressImage();
         imageComponent.fillAmount = amount;
 
-        OnProgressChange?.Invoke(amount);
+        OnProgressChange?.Invoke(amount, amount == 1);
     }
 
     IEnumerator Tween()

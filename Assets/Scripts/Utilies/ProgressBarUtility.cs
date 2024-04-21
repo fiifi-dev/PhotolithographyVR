@@ -8,35 +8,37 @@ using UnityEngine.UI;
 
 public class ProgressBarUtility
 {
-    private  GameObject ProgressObject;
+    private static GameObject ProgressObject;
 
     public static event Action<float> OnProgressChange;
     public static event Action OnComplete;
+    public static event Action OnStart;
 
 
-    public float DelaySeconds = 10;
-    private int Count { set; get; }
+    public static float DelaySeconds { get; set; }
+    private static int Count { set; get; }
 
 
-   public ProgressBarUtility(GameObject progressGameObject)
+    public ProgressBarUtility(GameObject progressGameObject, float delaySeconds)
     {
         ProgressObject = progressGameObject;
+        DelaySeconds = delaySeconds;
     }
 
 
-    public void Enable()
+    public static void Enable()
     {
         Count = 0;
         ProgressObject.SetActive(true);
     }
 
-    public void Disable()
+    public static void Disable()
     {
         ProgressObject.SetActive(false);
     }
 
 
-    public TextMeshProUGUI GetTextComponent()
+    public static TextMeshProUGUI GetTextComponent()
     {
         var textComponent = ProgressObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
@@ -46,7 +48,7 @@ public class ProgressBarUtility
         return textComponent;
     }
 
-    public Image GetProgressImage()
+    public static Image GetProgressImage()
     {
         var imageComponent = ProgressObject.transform.GetChild(0).GetComponent<Image>();
 
@@ -57,14 +59,20 @@ public class ProgressBarUtility
     }
 
 
-    public void SetText(string text)
+    public static void SetText(string text)
     {
         var textComponent = GetTextComponent();
         textComponent.text = text;
 
     }
 
-    public void SetProgress(float amount)
+    public static void ResetObject()
+    {
+        var imageComponent = GetProgressImage();
+        imageComponent.fillAmount = 0;
+    }
+
+    public static void SetProgress(float amount)
     {
         if (amount > 1) amount = 1;
 
@@ -76,12 +84,12 @@ public class ProgressBarUtility
         OnProgressChange?.Invoke(amount);
     }
 
-    public IEnumerator Tween()
+    public static IEnumerator Tween()
     {
-        float amount = 0;
-        float step = 1;
+        OnStart?.Invoke();
 
-        SetText("Progressing...");
+        float amount = 0;
+        float step = 0.5f;
 
         while (true)
         {
@@ -92,11 +100,13 @@ public class ProgressBarUtility
 
             if (amount >= 1)
             {
-                SetText("Done.");
+                ResetObject();
                 yield break;
             }
 
         }
+
+
     }
 
 }

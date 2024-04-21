@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
@@ -11,6 +12,7 @@ public class HandleInfoCanvas : MonoBehaviour
     public StageScriptableObject Stage;
     public GameObject CanvasObject;
     public GameObject TextPrefab;
+    private ProgressBarUtility ProgressUtility;
     // LabelComponents
     public GameObject LabelPrefab;
     public Texture CheckedTexture;
@@ -18,14 +20,21 @@ public class HandleInfoCanvas : MonoBehaviour
     // Created prefabs
     private Queue<GameObject> LabelInstances = new();
 
+    private void OnEnable()
+    {
+        new ProgressBarUtility(CanvasObject.transform.GetChild(0).gameObject, 10f);
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(ProgressBarUtility.Tween());
+    }
 
 
     private void Update()
     {
         RenderSteps();
     }
-
-
 
 
     public void RenderSteps()
@@ -40,7 +49,7 @@ public class HandleInfoCanvas : MonoBehaviour
         var stage = Stage.GetCurrentStage();
         var pos = 10f;
 
-        var titleObject =  AddTitleObject(stage.Title, new Vector3(50, -5, 0));
+        var titleObject =  AddTitleObject(stage.Title, new Vector3(50, pos, 0));
         LabelInstances.Enqueue(titleObject);
 
         foreach (var step in stage.Steps)
@@ -97,4 +106,7 @@ public class HandleInfoCanvas : MonoBehaviour
         return labelObject;
 
     }
+
+ 
+
 }
