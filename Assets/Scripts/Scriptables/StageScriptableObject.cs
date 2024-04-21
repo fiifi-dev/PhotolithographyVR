@@ -10,17 +10,50 @@ public class StageScriptableObject : ScriptableObject
     private int ActiveStageId = 1;
     private List<Stage> Stages = new();
 
+    private Dictionary<string, List<string>> InitialStages = new() {
+        { "Clean Wafer", new List<string>{
+            "Pick up wafer",
+            "Place wafer in acetone petri dish",
+            "Place wafer in IPA petri dish",
+            "Place wafer in DI Water petri dish",
+            "Dry wafer with nitrogen gun"}
+        },
+        { "Application of photoresist", new List<string>{
+            "Prebake wafer",
+            "Apply photoresist to wafer",
+            "Spread resist on wafer with spincoater",
+            "Postbake the wafer"}
+        }
+    };
+
     StageScriptableObject()
     {
-        var stage = new Stage(1, "Stage 1: Clean Wafer");
+        int i = 1, j;
 
-        stage.AddStep(new Step(1, "Pick up wafer"));
-        stage.AddStep(new Step(2, "Place wafer in acetone petri dish"));
-        stage.AddStep(new Step(3, "Place wafer in IPA petri dish"));
-        stage.AddStep(new Step(4, "Place wafer in DI Water petri dish"));
-        stage.AddStep(new Step(5, "Dry wafer with nitrogen gun"));
+        foreach (var stageKeyPair in InitialStages)
+        {
+            var stage = new Stage(1, $"Stage {i}: {stageKeyPair.Key}");
+            j = 1;
 
-        Stages.Add(stage);
+            foreach (var stepStr in stageKeyPair.Value)
+            {
+                stage.AddStep(new Step(j, stepStr));
+                j++;
+            }
+
+            Stages.Add(stage);
+            i++;
+
+        }
+        //var stage = new Stage(1, "Stage 1: Clean Wafer");
+
+        //stage.AddStep(new Step(1, "Pick up wafer"));
+        //stage.AddStep(new Step(2, "Place wafer in acetone petri dish"));
+        //stage.AddStep(new Step(3, "Place wafer in IPA petri dish"));
+        //stage.AddStep(new Step(4, "Place wafer in DI Water petri dish"));
+        //stage.AddStep(new Step(5, "Dry wafer with nitrogen gun"));
+
+        //Stages.Add(stage);
     }
 
 
