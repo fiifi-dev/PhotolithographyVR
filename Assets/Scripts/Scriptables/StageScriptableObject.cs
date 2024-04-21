@@ -45,15 +45,6 @@ public class StageScriptableObject : ScriptableObject
             i++;
 
         }
-        //var stage = new Stage(1, "Stage 1: Clean Wafer");
-
-        //stage.AddStep(new Step(1, "Pick up wafer"));
-        //stage.AddStep(new Step(2, "Place wafer in acetone petri dish"));
-        //stage.AddStep(new Step(3, "Place wafer in IPA petri dish"));
-        //stage.AddStep(new Step(4, "Place wafer in DI Water petri dish"));
-        //stage.AddStep(new Step(5, "Dry wafer with nitrogen gun"));
-
-        //Stages.Add(stage);
     }
 
 
