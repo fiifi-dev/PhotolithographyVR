@@ -12,29 +12,29 @@ public class StepFive : MonoBehaviour, IProgressBar
 
     private void OnEnable()
     {
-        ProgressBarUtility.OnComplete += HandleOnComplete;
+       // ProgressBarUtility.OnComplete += HandleOnComplete;
         HandleNitrogenGun.OnHitAcivate += HandleHitActivate;
     }
 
     private void OnDisable()
     {
-        ProgressBarUtility.OnComplete -= HandleOnComplete;
+       // ProgressBarUtility.OnComplete -= HandleOnComplete;
         HandleNitrogenGun.OnHitAcivate -= HandleHitActivate;
     }
 
 
-    void HandleHitActivate(GameObject obj, bool isHit, RaycastStatusEnum raycastStatus)
+    void HandleHitActivate(GameObject obj, bool isHit, bool isHitPrev, RaycastStatusEnum raycastStatus)
     {
         if (raycastStatus == RaycastStatusEnum.Active && isHit && obj?.tag == "Wafer")
         {
             if (!IsStepFive) IsStepFive = true;
 
-            if (!HasHit)
-            {
-                EnablepProgress();
-                HasHit = true;
-            }
+            HandleOnComplete();
         }
+        //else if (raycastStatus == RaycastStatusEnum.Inactive)
+        //{
+        //    if (!isHit && !isHitPrev) DisableProgress();
+        //}
     }
 
     public void HandleOnComplete()
@@ -43,15 +43,12 @@ public class StepFive : MonoBehaviour, IProgressBar
         if (!CanPerformStep()) return;
         var step = StageScriptable.GetCurrentStep();
         step.IsDone = true;
-        //Disable Progressbar
-        DisableProgress();
-        
     }
 
     private bool CanPerformStep()
     {
         var step = StageScriptable.GetCurrentStep();
-        return IsStepFive && !step.IsDone && step.StepId == 4;
+        return IsStepFive && !step.IsDone && step.StepId == 5;
     }
 
 

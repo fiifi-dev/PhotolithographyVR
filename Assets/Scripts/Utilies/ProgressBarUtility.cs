@@ -29,14 +29,14 @@ public class ProgressBarUtility
 
     public static void Enable()
     {
-        //Count = 0;
+        Count = 0;
         IsEnabled = true;
         //ProgressObject.SetActive(true);
     }
 
     public static void Disable()
     {
-        //Count = 0;
+        Count = 0;
         IsEnabled = false;
         //ProgressObject.SetActive(false);
     }

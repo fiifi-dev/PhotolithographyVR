@@ -14,7 +14,7 @@ public enum RaycastStatusEnum
 
 public class HandleNitrogenGun : MonoBehaviour
 {
-    public static Action<GameObject, bool, RaycastStatusEnum> OnHitAcivate; // hitObject, isHit and RaycastStatus
+    public static Action<GameObject, bool, bool, RaycastStatusEnum> OnHitAcivate; // hitObject, isHit, isHitPrev, and RaycastStatus
     public static Action OnPickup;
     public bool HasHit;
 
@@ -26,6 +26,7 @@ public class HandleNitrogenGun : MonoBehaviour
     public LayerMask GunLayerMask;
     public Transform ShootSourse;
     public float MaxRaycastDistance = 10;
+    private bool IsHitPrev = false;
     private RaycastStatusEnum RaycastStatus = RaycastStatusEnum.Ideal;
 
 
@@ -86,6 +87,7 @@ public class HandleNitrogenGun : MonoBehaviour
             );
 
         var obj = hit.transform.gameObject;
-        OnHitAcivate?.Invoke(obj, hasHit, RaycastStatus);
+        OnHitAcivate?.Invoke(obj, hasHit, IsHitPrev, RaycastStatus);
+        IsHitPrev = hasHit;
     }
 }
