@@ -10,7 +10,7 @@ public class PerformStep : MonoBehaviour, IProgressBar, IObjectLocation
     public bool IsDone { get; set; }
     public bool IsWorkingStep { get; set; }
     protected virtual string BOWL_TAG { get; }
-    private bool HasProgressBar { get; set; }
+    private bool HasProgressBar { get; set; } = true;
 
 
 
@@ -66,8 +66,9 @@ public class PerformStep : MonoBehaviour, IProgressBar, IObjectLocation
     public virtual void DisableProgress()
     {
         if (!IsWorkingStep || !HasProgressBar) return;
-        StopCoroutine(ProgressBarUtility.Tween());
         ProgressBarUtility.Disable();
+        StopCoroutine(ProgressBarUtility.Tween());
+
     }
 
     public virtual bool CanPerformStep()

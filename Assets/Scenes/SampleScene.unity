@@ -896,7 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c37263b1ba46244e845983c6d492442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stage: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
   CanvasObject: {fileID: 275199130}
   TextPrefab: {fileID: 3876674520449255709, guid: c6bf9f1a846520b42a965a79bcba4899,
     type: 3}
@@ -4718,6 +4718,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537400783}
   m_CullTransparentMesh: 1
+--- !u!1 &1547013158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1547013160}
+  - component: {fileID: 1547013159}
+  m_Layer: 0
+  m_Name: ManagerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1547013159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547013158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7ba307423d36c44baf84f08a17a920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+--- !u!4 &1547013160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547013158}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.799, y: 2.2970686, z: 0.603}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1558210010 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
@@ -10743,7 +10788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60238d82992d5e94696dfba998115f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stage: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
 --- !u!114 &2120561172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12254,3 +12299,4 @@ SceneRoots:
   - {fileID: 275199134}
   - {fileID: 485388874}
   - {fileID: 1335430454}
+  - {fileID: 1547013160}

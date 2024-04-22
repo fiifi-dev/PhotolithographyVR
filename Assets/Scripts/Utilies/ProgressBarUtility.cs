@@ -13,6 +13,7 @@ public class ProgressBarUtility
     public static event Action<float> OnProgressChange;
     public static event Action OnComplete;
     public static event Action OnStart;
+    public static bool IsEnabled = false;
 
 
     public static float DelaySeconds { get; set; }
@@ -28,14 +29,18 @@ public class ProgressBarUtility
 
     public static void Enable()
     {
-        Count = 0;
-        ProgressObject.SetActive(true);
+        //Count = 0;
+        IsEnabled = true;
+        //ProgressObject.SetActive(true);
     }
 
     public static void Disable()
     {
-        ProgressObject.SetActive(false);
+        //Count = 0;
+        IsEnabled = false;
+        //ProgressObject.SetActive(false);
     }
+
 
 
     public static TextMeshProUGUI GetTextComponent()
@@ -74,6 +79,7 @@ public class ProgressBarUtility
 
     public static void SetProgress(float amount)
     {
+        if (!IsEnabled) amount = 0;
         if (amount > 1) amount = 1;
 
         if (amount == 1) OnComplete?.Invoke();
@@ -86,9 +92,10 @@ public class ProgressBarUtility
 
     public static IEnumerator Tween()
     {
+
         OnStart?.Invoke();
 
-        float amount = 0;
+        float amount;
         float step = 0.5f;
 
         while (true)

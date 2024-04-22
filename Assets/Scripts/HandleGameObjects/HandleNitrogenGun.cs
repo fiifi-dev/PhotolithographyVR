@@ -5,19 +5,28 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
+public enum RaycastStatusEnum
+{
+    Ideal,
+    Active,
+    Inactive
+}
+
 public class HandleNitrogenGun : MonoBehaviour
 {
-    public static Action<GameObject, bool> OnHitAcivate; // hitObject and isHit
+    public static Action<GameObject, bool, RaycastStatusEnum> OnHitAcivate; // hitObject, isHit and RaycastStatus
+    public static Action OnPickup;
     public bool HasHit;
 
 
     public ParticleSystem Particles;
     private Animator MAnimator;
+    private XRGrabInteractable GrabInteractable;
 
     public LayerMask GunLayerMask;
     public Transform ShootSourse;
     public float MaxRaycastDistance = 10;
-    private bool IsRayActivated = false;
+    private RaycastStatusEnum RaycastStatus = RaycastStatusEnum.Ideal;
 
 
 
@@ -26,22 +35,31 @@ public class HandleNitrogenGun : MonoBehaviour
     void Start()
     {
         MAnimator = GetComponent<Animator>();
+    }
 
-        var grabInteractable = GetComponent<XRGrabInteractable>();
-        grabInteractable.activated.AddListener(StartGun);
-        grabInteractable.deactivated.AddListener(StopGun);
+    private void OnEnable()
+    {
+        GrabInteractable = GetComponent<XRGrabInteractable>();
+        GrabInteractable.activated.AddListener(StartGun);
+        GrabInteractable.deactivated.AddListener(StopGun);
+    }
+
+    private void OnDisable()
+    {
+        GrabInteractable.activated.RemoveListener(StartGun);
+        GrabInteractable.deactivated.RemoveListener(StopGun);
     }
 
     private void StopGun(DeactivateEventArgs args)
     {
-        IsRayActivated = false;
+        RaycastStatus = RaycastStatusEnum.Inactive;
         MAnimator.SetTrigger("TrRelease");
         Particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     private void StartGun(ActivateEventArgs args)
     {
-        IsRayActivated = true;
+        RaycastStatus = RaycastStatusEnum.Active;
         MAnimator.SetTrigger("TrPull");
         Particles.Play();
 
@@ -54,7 +72,8 @@ public class HandleNitrogenGun : MonoBehaviour
 
     public void RaycastCheck()
     {
-        if (!IsRayActivated) return;
+        if (RaycastStatus == RaycastStatusEnum.Ideal) return;
+
 
         RaycastHit hit;
 
@@ -67,6 +86,6 @@ public class HandleNitrogenGun : MonoBehaviour
             );
 
         var obj = hit.transform.gameObject;
-        OnHitAcivate?.Invoke(obj, hasHit);
+        OnHitAcivate?.Invoke(obj, hasHit, RaycastStatus);
     }
 }

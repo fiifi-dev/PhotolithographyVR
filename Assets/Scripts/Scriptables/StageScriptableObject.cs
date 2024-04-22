@@ -9,6 +9,7 @@ public class StageScriptableObject : ScriptableObject
 {
     public int ActiveStageId { get; set; } = 1;
     public int ActiveStepId { get; set; } = 1;
+
     private List<Stage> Stages = new();
 
     private Dictionary<string, List<string>> InitialStages = new() {
@@ -29,6 +30,14 @@ public class StageScriptableObject : ScriptableObject
 
     StageScriptableObject(): base()
     {
+      ResetStages();
+    }
+
+    public void ResetStages()
+    {
+        ActiveStageId = 1;
+        ActiveStepId = 1;
+
         int i = 1, j;
 
         foreach (var stageKeyPair in InitialStages)

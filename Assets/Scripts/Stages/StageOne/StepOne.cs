@@ -19,7 +19,8 @@ public class StepOne : MonoBehaviour
     private bool CanPerformStep()
     {
         var step = StageScriptable.GetCurrentStep();
-        return !step.IsDone && step.StepId == 1;
+
+        return StageScriptable.ActiveStageId == 1 && !step.IsDone && step.StepId == 1;
     }
 
     private void HandleSelectEntered(SelectEnterEventArgs args)

@@ -23,10 +23,9 @@ public class StepFive : MonoBehaviour, IProgressBar
     }
 
 
-    void HandleHitActivate(GameObject obj, bool isHit)
+    void HandleHitActivate(GameObject obj, bool isHit, RaycastStatusEnum raycastStatus)
     {
-
-        if (isHit && obj.tag == "Wafer")
+        if (raycastStatus == RaycastStatusEnum.Active && isHit && obj?.tag == "Wafer")
         {
             if (!IsStepFive) IsStepFive = true;
 
@@ -36,10 +35,6 @@ public class StepFive : MonoBehaviour, IProgressBar
                 HasHit = true;
             }
         }
-        else
-        {
-            if (HasHit) DisableProgress();
-        }
     }
 
     public void HandleOnComplete()
@@ -48,6 +43,9 @@ public class StepFive : MonoBehaviour, IProgressBar
         if (!CanPerformStep()) return;
         var step = StageScriptable.GetCurrentStep();
         step.IsDone = true;
+        //Disable Progressbar
+        DisableProgress();
+        
     }
 
     private bool CanPerformStep()
@@ -60,13 +58,16 @@ public class StepFive : MonoBehaviour, IProgressBar
     public void EnablepProgress()
     {
         if (!HasProgressBar) return;
+        ProgressBarUtility.Enable();
         StartCoroutine(ProgressBarUtility.Tween());
     }
 
     public void DisableProgress()
     {
         if (!HasProgressBar) return;
+        ProgressBarUtility.Disable();
         StopCoroutine(ProgressBarUtility.Tween());
         IsStepFive = false;
+        HasHit = false;
     }
 }
