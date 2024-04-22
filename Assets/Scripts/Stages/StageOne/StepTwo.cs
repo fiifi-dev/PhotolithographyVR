@@ -11,6 +11,6 @@ public class StepTwo : PerformStep
     public override bool CanPerformStep()
     {
         var step = StageScriptable.GetCurrentStep();
-        return !step.IsDone && step.StepId == 2;
+        return StageScriptable.ActiveStageId == 1 && !step.IsDone && step.StepId == 2;
     }
 }

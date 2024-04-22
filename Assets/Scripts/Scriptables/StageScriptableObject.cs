@@ -42,7 +42,7 @@ public class StageScriptableObject : ScriptableObject
 
         foreach (var stageKeyPair in InitialStages)
         {
-            var stage = new Stage(1, $"Stage {i}: {stageKeyPair.Key}");
+            var stage = new Stage(i, $"Stage {i}: {stageKeyPair.Key}");
             j = 1;
 
             foreach (var stepStr in stageKeyPair.Value)

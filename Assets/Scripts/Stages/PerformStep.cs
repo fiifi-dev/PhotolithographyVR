@@ -74,7 +74,8 @@ public class PerformStep : MonoBehaviour, IProgressBar, IObjectLocation
     public virtual bool CanPerformStep()
     {
         var step = StageScriptable.GetCurrentStep();
-        return !step.IsDone && step.StepId == 2;
+       
+        return StageScriptable.ActiveStageId == 1 && !step.IsDone && step.StepId == 2;
     }
 
 
