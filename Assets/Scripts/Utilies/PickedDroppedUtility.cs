@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PickedDropped : MonoBehaviour
+public class PickedDroppedUtility : MonoBehaviour
 {
-    public static event Action<SelectExitEventArgs> OnDropped;
-    public static event Action<SelectEnterEventArgs> OnPicked;
+    public UnityEvent OnDropped;
+    public UnityEvent OnPicked;
 
     private void OnEnable()
     {
@@ -23,11 +24,11 @@ public class PickedDropped : MonoBehaviour
 
     private void HandleSelectExited(SelectExitEventArgs args)
     {
-        OnDropped?.Invoke(args);
+        OnDropped.Invoke();
     }
 
     private void HandleSelectEntered(SelectEnterEventArgs args)
     {
-        OnPicked?.Invoke(args);
+        OnPicked.Invoke();
     }
 }

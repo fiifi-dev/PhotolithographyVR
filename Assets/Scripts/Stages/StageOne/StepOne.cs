@@ -7,14 +7,14 @@ public class StepOne : MonoBehaviour
 {
     public StageScriptableObject StageScriptable;
 
-    private void OnEnable()
-    {
-        PickedDropped.OnPicked += HandleSelectEntered;
-    }
-    private void OnDisable()
-    {
-        PickedDropped.OnPicked -= HandleSelectEntered;
-    }
+    //private void OnEnable()
+    //{
+    //    PickedDroppedUtility.OnPicked += HandleSelectEntered;
+    //}
+    //private void OnDisable()
+    //{
+    //    PickedDroppedUtility.OnPicked -= HandleSelectEntered;
+    //}
 
     private bool CanPerformStep()
     {
@@ -23,7 +23,7 @@ public class StepOne : MonoBehaviour
         return StageScriptable.ActiveStageId == 1 && !step.IsDone && step.StepId == 1;
     }
 
-    private void HandleSelectEntered(SelectEnterEventArgs args)
+    public void HandleAction()
     {
 
         if (!CanPerformStep()) return;

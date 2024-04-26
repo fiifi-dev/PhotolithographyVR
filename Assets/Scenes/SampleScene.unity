@@ -486,6 +486,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5054924898770315062, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      propertyPath: ProgressObject
+      value: 
+      objectReference: {fileID: 629188213}
+    - target: {fileID: 5054924898770315062, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 173335961}
     - target: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
         type: 3}
       propertyPath: m_TagString
@@ -496,6 +506,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.009
       objectReference: {fileID: 0}
+    - target: {fileID: 6108486742577713877, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      propertyPath: OnInside.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108486742577713877, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      propertyPath: OnOutside.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108486742577713877, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      propertyPath: OnInside.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartProgress
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108486742577713877, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      propertyPath: OnOutside.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopProgress
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -503,7 +533,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 173335955}
+      addedObject: {fileID: 173335961}
+    - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 173335960}
+    - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 173335959}
   m_SourcePrefab: {fileID: 100100000, guid: 160eaa8caced6844cb893048dcfa028d, type: 3}
 --- !u!4 &171888047 stripped
 Transform:
@@ -517,7 +555,127 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 162672790}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &173335955
+--- !u!114 &173335959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173335951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04a3c2835a244f48a239db58c4c5ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 4294967295
+  m_AttachTransform: {fileID: 0}
+  m_KeepSelectedTargetValid: 1
+  m_DisableVisualsWhenBlockedInGroup: 1
+  m_StartingSelectedInteractable: {fileID: 0}
+  m_StartingTargetFilter: {fileID: 0}
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ShowInteractableHoverMeshes: 1
+  m_InteractableHoverMeshMaterial: {fileID: 0}
+  m_InteractableCantHoverMeshMaterial: {fileID: 0}
+  m_SocketActive: 1
+  m_InteractableHoverScale: 1
+  m_RecycleDelayTime: 1
+  m_HoverSocketSnapping: 0
+  m_SocketSnappingRadius: 0.1
+  m_SocketScaleMode: 0
+  m_FixedScale: {x: 1, y: 1, z: 1}
+  m_TargetBoundsSize: {x: 1, y: 1, z: 1}
+  TargetTag: Wafer
+  TargetGameObject: {fileID: 173335951}
+  OnInside:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 173335960}
+        m_TargetAssemblyTypeName: ProgressUtility, Assembly-CSharp
+        m_MethodName: StartProgress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnOutside:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 173335960}
+        m_TargetAssemblyTypeName: ProgressUtility, Assembly-CSharp
+        m_MethodName: StopProgress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &173335960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173335951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a2a939e61e4ba44b180db49e21f910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 173335961}
+        m_TargetAssemblyTypeName: StepTwo, Assembly-CSharp
+        m_MethodName: HandleStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ProgressObject: {fileID: 629188213}
+--- !u!114 &173335961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3830,6 +3988,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5054924898770315062, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
         type: 3}
       propertyPath: m_TagString
@@ -3848,6 +4011,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1558210014}
+    - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1558210019}
+    - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1558210018}
   m_SourcePrefab: {fileID: 100100000, guid: 160eaa8caced6844cb893048dcfa028d, type: 3}
 --- !u!4 &1417282407 stripped
 Transform:
@@ -4787,6 +4958,126 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+--- !u!114 &1558210018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558210010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04a3c2835a244f48a239db58c4c5ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 4294967295
+  m_AttachTransform: {fileID: 0}
+  m_KeepSelectedTargetValid: 1
+  m_DisableVisualsWhenBlockedInGroup: 1
+  m_StartingSelectedInteractable: {fileID: 0}
+  m_StartingTargetFilter: {fileID: 0}
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ShowInteractableHoverMeshes: 1
+  m_InteractableHoverMeshMaterial: {fileID: 0}
+  m_InteractableCantHoverMeshMaterial: {fileID: 0}
+  m_SocketActive: 1
+  m_InteractableHoverScale: 1
+  m_RecycleDelayTime: 1
+  m_HoverSocketSnapping: 0
+  m_SocketSnappingRadius: 0.1
+  m_SocketScaleMode: 0
+  m_FixedScale: {x: 1, y: 1, z: 1}
+  m_TargetBoundsSize: {x: 1, y: 1, z: 1}
+  TargetTag: Wafer
+  TargetGameObject: {fileID: 1558210010}
+  OnInside:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1558210019}
+        m_TargetAssemblyTypeName: ProgressUtility, Assembly-CSharp
+        m_MethodName: StartProgress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnOutside:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1558210019}
+        m_TargetAssemblyTypeName: ProgressUtility, Assembly-CSharp
+        m_MethodName: StopProgress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1558210019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558210010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a2a939e61e4ba44b180db49e21f910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1558210014}
+        m_TargetAssemblyTypeName: StepThree, Assembly-CSharp
+        m_MethodName: HandleStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ProgressObject: {fileID: 629188213}
 --- !u!4 &1603950440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9204785679073840710, guid: 53c4466de15df1943ae895b084a80522,
@@ -10802,6 +11093,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1e4e8c1479f9840aadb6695852c537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDropped:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPicked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2120561168}
+        m_TargetAssemblyTypeName: StepOne, Assembly-CSharp
+        m_MethodName: HandleAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2120561182
 MonoBehaviour:
   m_ObjectHideFlags: 0

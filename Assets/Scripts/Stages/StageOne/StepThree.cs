@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class StepThree : PerformStep
+public class StepThree : MonoBehaviour
 {
-    protected override string BOWL_TAG { get => "Bowl2"; }
-    public override bool CanPerformStep()
+    public StageScriptableObject StageScriptable;
+
+    public virtual void HandleStep()
+    {
+        if (!CanPerformStep()) return;
+
+        // Runs if wafer is dropped in petri 
+        var step = StageScriptable.GetCurrentStep();
+        step.IsDone = true;
+        StageScriptable.SetNextStep();
+    }
+
+    public bool CanPerformStep()
     {
         var step = StageScriptable.GetCurrentStep();
         return StageScriptable.ActiveStageId == 1 && !step.IsDone && step.StepId == 3;
