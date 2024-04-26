@@ -12,6 +12,7 @@ TagManager:
   - Bowl1
   - Bowl2
   - Bowl3
+  - Oven1
   layers:
   - Default
   - TransparentFX

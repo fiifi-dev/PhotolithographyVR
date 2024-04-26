@@ -191,6 +191,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7028157205294589548, guid: 54513c126d1c752429612435601e3221,
+        type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 222100461}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4905,24 +4910,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1812360394}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1778644140 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4630857960775642174, guid: 54513c126d1c752429612435601e3221,
-    type: 3}
-  m_PrefabInstance: {fileID: 6426816793724247503}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1778644152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778644140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7113edd1cefc174438a5c21a778442af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1778644153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5408766438366393988, guid: 54513c126d1c752429612435601e3221,
@@ -11832,25 +11819,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 256596292}
     m_Modifications:
-    - target: {fileID: 1309297366237209296, guid: 54513c126d1c752429612435601e3221,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3184230030263468271, guid: 54513c126d1c752429612435601e3221,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4630857960775642174, guid: 54513c126d1c752429612435601e3221,
         type: 3}
       propertyPath: m_Name
       value: oven
       objectReference: {fileID: 0}
-    - target: {fileID: 4983251387290864992, guid: 54513c126d1c752429612435601e3221,
+    - target: {fileID: 4630857960775642174, guid: 54513c126d1c752429612435601e3221,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239873733229352313, guid: 54513c126d1c752429612435601e3221,
+        type: 3}
+      propertyPath: m_TagString
+      value: Oven1
       objectReference: {fileID: 0}
     - target: {fileID: 5408766438366393988, guid: 54513c126d1c752429612435601e3221,
         type: 3}
@@ -11910,11 +11892,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4630857960775642174, guid: 54513c126d1c752429612435601e3221,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1778644152}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54513c126d1c752429612435601e3221, type: 3}
 --- !u!1001 &6837410286633271648
 PrefabInstance:
