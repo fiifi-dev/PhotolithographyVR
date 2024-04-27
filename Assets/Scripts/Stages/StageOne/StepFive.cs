@@ -13,6 +13,8 @@ public class StepFive : MonoBehaviour
 
         // Runs if wafer is dropped in petri 
         var step = StageScriptable.GetCurrentStep();
+        var stage = StageScriptable.GetCurrentStage();
+        stage.IsDone = true;
         step.IsDone = true;
     }
 

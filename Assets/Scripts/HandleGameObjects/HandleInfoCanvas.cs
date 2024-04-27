@@ -20,17 +20,6 @@ public class HandleInfoCanvas : MonoBehaviour
     // Created prefabs
     private Queue<GameObject> LabelInstances = new();
 
-    private void OnEnable()
-    {
-        new ProgressBarUtility(CanvasObject.transform.GetChild(0).gameObject, 10f);
-    }
-
-    private void OnDisable()
-    {
-        StopCoroutine(ProgressBarUtility.Tween());
-    }
-
-
     private void Update()
     {
         RenderSteps();
