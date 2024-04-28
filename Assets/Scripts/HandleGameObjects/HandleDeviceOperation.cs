@@ -5,11 +5,7 @@ using UnityEngine.Events;
 
 public class HandleDeviceOperation : MonoBehaviour
 {
-    public UnityEvent OnDeviceOpen;
-    public UnityEvent OnDeviceClose;
-    public UnityEvent OnDeviceStart;
-    public UnityEvent OnDeviceEnd;
-    public UnityEvent OnOperationComplete;
+    public UnityEvent OnValidStart;
 
     private bool IsObjectInDevice;
     private bool IsDeviceStart;
@@ -39,14 +35,23 @@ public class HandleDeviceOperation : MonoBehaviour
 
     private void Update()
     {
-        var isValidComplete = !IsDeviceOpen && IsObjectInDevice && IsDeviceStart && IsOperationComplete;
-
-        if (isValidComplete)
+        var isValidStart = !IsDeviceOpen && IsObjectInDevice && IsDeviceStart;
+        if (isValidStart)
         {
-            OnOperationComplete.Invoke();
+            OnValidStart.Invoke();
             IsDeviceStart = false;
-            IsOperationComplete = false;
         }
+
+
+
+        //var isValidComplete = !IsDeviceOpen && IsObjectInDevice && IsDeviceStart && IsOperationComplete;
+
+        //if (isValidComplete)
+        //{
+        //    OnOperationComplete.Invoke();
+        //    IsDeviceStart = false;
+        //    IsOperationComplete = false;
+        //}
     }
 
 }
