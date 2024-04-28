@@ -568,7 +568,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 173335961}
+      objectReference: {fileID: 0}
     - target: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
         type: 3}
       propertyPath: m_TagString
@@ -606,15 +606,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 173335961}
-    - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 173335960}
     - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 173335959}
+    - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 173335964}
   m_SourcePrefab: {fileID: 100100000, guid: 160eaa8caced6844cb893048dcfa028d, type: 3}
 --- !u!4 &171888047 stripped
 Transform:
@@ -736,8 +736,8 @@ MonoBehaviour:
   OnComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 173335961}
-        m_TargetAssemblyTypeName: StepTwo, Assembly-CSharp
+      - m_Target: {fileID: 173335964}
+        m_TargetAssemblyTypeName: PerformStep, Assembly-CSharp
         m_MethodName: HandleStep
         m_Mode: 1
         m_Arguments:
@@ -749,7 +749,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ProgressObject: {fileID: 629188213}
---- !u!114 &173335961
+--- !u!114 &173335964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -758,10 +758,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 173335951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 887428e2f4196864ba080767923ed8f4, type: 3}
+  m_Script: {fileID: 11500000, guid: c00519ff70bcee541858791ea76e0eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+  StepNumber: 0
+  StageNumber: 0
+  IsLastStep: 0
 --- !u!1001 &175826994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1054,6 +1057,7 @@ GameObject:
   - component: {fileID: 275199135}
   - component: {fileID: 275199136}
   - component: {fileID: 275199137}
+  - component: {fileID: 275199138}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: InstructionCanvas
@@ -1179,6 +1183,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextStageButton: {fileID: 2000877641}
   StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+--- !u!114 &275199138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275199130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!4 &304026890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6189354538098044173, guid: 2fd3e07afe5b461490fb8e314976b1b0,
@@ -1906,6 +1929,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436442414}
   m_CullTransparentMesh: 1
+--- !u!1 &442905235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 442905237}
+  - component: {fileID: 442905236}
+  - component: {fileID: 442905238}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &442905236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442905235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a2a939e61e4ba44b180db49e21f910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 442905238}
+        m_TargetAssemblyTypeName: PerformStep, Assembly-CSharp
+        m_MethodName: HandleStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ProgressObject: {fileID: 629188213}
+--- !u!4 &442905237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442905235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.0692458, y: 2.1657574, z: 0.5835742}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &442905238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442905235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00519ff70bcee541858791ea76e0eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StageScriptable: {fileID: 0}
+  StepNumber: 5
+  StageNumber: 1
+  IsLastStep: 1
 --- !u!4 &453462859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d77d0e39df302ac41aa2fae1690405c8,
@@ -1997,15 +2097,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1656512281}
-    - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1656512286}
     - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1656512285}
+    - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1656512289}
   m_SourcePrefab: {fileID: 100100000, guid: 160eaa8caced6844cb893048dcfa028d, type: 3}
 --- !u!1 &474598221
 GameObject:
@@ -3924,7 +4024,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bd010667a3ec32340ac30092c540e79b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1526622976}
+      addedObject: {fileID: 1526622982}
   m_SourcePrefab: {fileID: 100100000, guid: bd010667a3ec32340ac30092c540e79b, type: 3}
 --- !u!4 &1347420522 stripped
 Transform:
@@ -4385,15 +4485,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1558210014}
-    - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1558210019}
     - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1558210018}
+    - targetCorrespondingSourceObject: {fileID: 5332726667221720005, guid: 160eaa8caced6844cb893048dcfa028d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1558210022}
   m_SourcePrefab: {fileID: 100100000, guid: 160eaa8caced6844cb893048dcfa028d, type: 3}
 --- !u!4 &1417282407 stripped
 Transform:
@@ -5199,28 +5299,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnActivate:
     m_PersistentCalls:
+      m_Calls: []
+  OnDeactivate:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2120561153}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 1526622982}
+        m_TargetAssemblyTypeName: ProgressUtility, Assembly-CSharp
+        m_MethodName: StopProgress
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnDeactivate:
-    m_PersistentCalls:
-      m_Calls: []
   OnObjectHit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2120561182}
-        m_TargetAssemblyTypeName: StepFive, Assembly-CSharp
-        m_MethodName: HandleStep
+      - m_Target: {fileID: 1526622982}
+        m_TargetAssemblyTypeName: ProgressUtility, Assembly-CSharp
+        m_MethodName: StartProgress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5231,7 +5331,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ObjectTag: 
-  NitrogenGunObject: {fileID: 0}
+  NitrogenGunObject: {fileID: 1526622961}
   Particles: {fileID: 2103461750}
   GunLayerMask:
     serializedVersion: 2
@@ -5259,7 +5359,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1526622976
+--- !u!114 &1526622982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5273,19 +5373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2120561182}
-        m_TargetAssemblyTypeName: StepFive, Assembly-CSharp
-        m_MethodName: HandleStep
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   ProgressObject: {fileID: 629188213}
 --- !u!1 &1537400783
 GameObject:
@@ -5442,19 +5530,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1397615327}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1558210014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558210010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 129e68e6b6fcbde48a1c483ceb81ae14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
 --- !u!114 &1558210018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5563,8 +5638,8 @@ MonoBehaviour:
   OnComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1558210014}
-        m_TargetAssemblyTypeName: StepThree, Assembly-CSharp
+      - m_Target: {fileID: 1558210022}
+        m_TargetAssemblyTypeName: PerformStep, Assembly-CSharp
         m_MethodName: HandleStep
         m_Mode: 1
         m_Arguments:
@@ -5576,6 +5651,22 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ProgressObject: {fileID: 629188213}
+--- !u!114 &1558210022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558210010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00519ff70bcee541858791ea76e0eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+  StepNumber: 0
+  StageNumber: 0
+  IsLastStep: 0
 --- !u!4 &1603950440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9204785679073840710, guid: 53c4466de15df1943ae895b084a80522,
@@ -5600,19 +5691,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 469129882}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1656512281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656512277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96b2aeb92e5fd274990ebcc159c71df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
 --- !u!114 &1656512285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5721,8 +5799,8 @@ MonoBehaviour:
   OnComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1656512281}
-        m_TargetAssemblyTypeName: StepFour, Assembly-CSharp
+      - m_Target: {fileID: 1656512289}
+        m_TargetAssemblyTypeName: PerformStep, Assembly-CSharp
         m_MethodName: HandleStep
         m_Mode: 1
         m_Arguments:
@@ -5734,6 +5812,22 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ProgressObject: {fileID: 629188213}
+--- !u!114 &1656512289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656512277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00519ff70bcee541858791ea76e0eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+  StepNumber: 0
+  StageNumber: 0
+  IsLastStep: 0
 --- !u!4 &1675762177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 109434732395451517, guid: 65847589f926b734d9eaed6e25f0046b,
@@ -6511,6 +6605,7 @@ GameObject:
   - component: {fileID: 2000877645}
   - component: {fileID: 2000877644}
   - component: {fileID: 2000877643}
+  - component: {fileID: 2000877646}
   m_Layer: 5
   m_Name: NextStageButton
   m_TagString: Untagged
@@ -6535,7 +6630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: 53}
+  m_AnchoredPosition: {x: -10, y: 53}
   m_SizeDelta: {x: 80, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2000877643
@@ -6581,7 +6676,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2000877644}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2000877646}
+        m_TargetAssemblyTypeName: StageEventAction, Assembly-CSharp
+        m_MethodName: SetNextStage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2000877644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6620,6 +6727,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000877641}
   m_CullTransparentMesh: 1
+--- !u!114 &2000877646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000877641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a7549a3de2c4b4e9606e09d20879b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
 --- !u!4 &2052341996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 905794337214885473, guid: 160eaa8caced6844cb893048dcfa028d,
@@ -11803,19 +11923,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6884366513107466636}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2120561168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120561153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60238d82992d5e94696dfba998115f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
 --- !u!114 &2120561172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11848,9 +11955,9 @@ MonoBehaviour:
   OnPicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2120561168}
-        m_TargetAssemblyTypeName: StepOne, Assembly-CSharp
-        m_MethodName: HandleAction
+      - m_Target: {fileID: 2120561191}
+        m_TargetAssemblyTypeName: PerformStep, Assembly-CSharp
+        m_MethodName: HandleStep
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11860,19 +11967,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2120561182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120561153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7276c96ba718bfe41938444f70d4c871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
 --- !u!114 &2120561186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11891,7 +11985,7 @@ MonoBehaviour:
   OnDeactivate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2120561187}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ProgressUtility, Assembly-CSharp
         m_MethodName: StopProgress
         m_Mode: 1
@@ -11906,7 +12000,7 @@ MonoBehaviour:
   OnObjectHit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2120561187}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ProgressUtility, Assembly-CSharp
         m_MethodName: StartProgress
         m_Mode: 1
@@ -11926,7 +12020,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   ShootSourse: {fileID: 474598222}
   MaxRaycastDistance: 10
---- !u!114 &2120561187
+--- !u!114 &2120561191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11935,25 +12029,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2120561153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8a2a939e61e4ba44b180db49e21f910, type: 3}
+  m_Script: {fileID: 11500000, guid: c00519ff70bcee541858791ea76e0eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnComplete:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2120561182}
-        m_TargetAssemblyTypeName: StepFive, Assembly-CSharp
-        m_MethodName: HandleStep
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ProgressObject: {fileID: 629188213}
+  StageScriptable: {fileID: 11400000, guid: 59f23aac01051ec409c308b12bbd436a, type: 2}
+  StepNumber: 0
+  StageNumber: 0
+  IsLastStep: 0
 --- !u!1 &2142275673
 GameObject:
   m_ObjectHideFlags: 0
@@ -13189,10 +13271,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1848278682491657954, guid: c48790dfef575da4fb186b22ea3187c5,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2120561168}
-    - targetCorrespondingSourceObject: {fileID: 1848278682491657954, guid: c48790dfef575da4fb186b22ea3187c5,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2120561172}
     - targetCorrespondingSourceObject: {fileID: 1848278682491657954, guid: c48790dfef575da4fb186b22ea3187c5,
         type: 3}
@@ -13201,15 +13279,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1848278682491657954, guid: c48790dfef575da4fb186b22ea3187c5,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2120561182}
-    - targetCorrespondingSourceObject: {fileID: 1848278682491657954, guid: c48790dfef575da4fb186b22ea3187c5,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2120561186}
     - targetCorrespondingSourceObject: {fileID: 1848278682491657954, guid: c48790dfef575da4fb186b22ea3187c5,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2120561187}
+      addedObject: {fileID: 2120561191}
   m_SourcePrefab: {fileID: 100100000, guid: c48790dfef575da4fb186b22ea3187c5, type: 3}
 --- !u!1001 &7444209656387618118
 PrefabInstance:
@@ -13425,3 +13499,4 @@ SceneRoots:
   - {fileID: 485388874}
   - {fileID: 1335430454}
   - {fileID: 1547013160}
+  - {fileID: 442905237}

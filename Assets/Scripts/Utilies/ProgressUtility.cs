@@ -88,11 +88,13 @@ public class ProgressUtility : MonoBehaviour
 
     public void StartProgress()
     {
+        Debug.Log("Start Progress");
         StartCoroutine(Tween());
     }
 
     public void StopProgress()
     {
+        Debug.Log("Stop Progress");
         StopAllCoroutines();
         ResetProgress();
     }
