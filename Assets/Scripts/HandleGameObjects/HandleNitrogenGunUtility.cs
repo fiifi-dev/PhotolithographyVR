@@ -79,6 +79,8 @@ public class HandleNitrogenGunUtility : MonoBehaviour
 
     public void RaycastCheck()
     {
+
+
         RaycastHit hit;
 
         var hasHit = Physics.Raycast(
@@ -97,6 +99,7 @@ public class HandleNitrogenGunUtility : MonoBehaviour
 
         if (isHitValid && !HasAlreadyInvoked)
         {
+
             OnObjectHit.Invoke();
             HasAlreadyInvoked = true;
         }

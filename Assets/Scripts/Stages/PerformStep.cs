@@ -7,9 +7,12 @@ public class PerformStep : MonoBehaviour
 {  
     public StageScriptableObject StageScriptable;
 
-    public int StepNumber;
-    public int StageNumber;
-    public bool IsLastStep;
+    [SerializeField]
+    private int StepNumber;
+    [SerializeField]
+    private int StageNumber;
+    [SerializeField]
+    private bool IsLastStep;
 
 
     private bool CanPerformStep()
@@ -30,7 +33,7 @@ public class PerformStep : MonoBehaviour
         if(IsLastStep)
         {
             var stage = StageScriptable.GetCurrentStage();
-            stage.IsDone = false;
+            stage.IsDone = true;
         }
         else
         {
