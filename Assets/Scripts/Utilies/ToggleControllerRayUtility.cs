@@ -1,58 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class ToggleControllerRayUtility : MonoBehaviour
 {
     public GameObject LeftObject;
     public GameObject RightObject;
+    public GameObject InfoCanvasObject;
 
-    private bool IsLeftVisible;
-    private bool IsRightVisible;
+    private bool IsLeftVisible = true;
+    private bool IsRightVisible = true;
+    private bool IsCanvasVisible = true;
 
     private void OnEnable()
     {
+        // Subscribe to the events when the script is enabled
         ManagerUtility.OnLeftPrimaryPressed += ToggleLeftObject;
         ManagerUtility.OnRightPrimaryPressed += ToggleRightObject;
+        ManagerUtility.OnRightSecondaryPressed += ToggleCanvasObject;
     }
 
     private void OnDisable()
     {
+        // Unsubscribe from the events when the script is disabled
         ManagerUtility.OnLeftPrimaryPressed -= ToggleLeftObject;
         ManagerUtility.OnRightPrimaryPressed -= ToggleRightObject;
+        ManagerUtility.OnRightSecondaryPressed -= ToggleCanvasObject;
     }
 
-    public void ToggleLeftObject()
+    private void ToggleObject(ref bool isVisible, GameObject obj)
     {
-        if(LeftObject == null) return;  
+        // Check if the GameObject is not null
+        if (obj == null) return;
 
-        if (IsLeftVisible)
-        {
-            LeftObject.SetActive(false);
-            IsLeftVisible = false;
-        }
-        else
-        {
-            LeftObject.SetActive(true);
-            IsLeftVisible = true;
-        }
+        // Toggle the active state and the visibility flag
+        isVisible = !isVisible;
+        obj.SetActive(isVisible);
     }
 
-    public void ToggleRightObject()
+    private void ToggleLeftObject()
     {
-        if(RightObject == null) return;
-
-        if (IsRightVisible)
-        {
-            RightObject.SetActive(false);
-            IsRightVisible = false;
-        }
-        else
-        {
-            RightObject.SetActive(true);
-            IsRightVisible = true;
-        }
+        ToggleObject(ref IsLeftVisible, LeftObject);
     }
 
+    private void ToggleRightObject()
+    {
+        ToggleObject(ref IsRightVisible, RightObject);
+    }
 
+    private void ToggleCanvasObject()
+    {
+        ToggleObject(ref IsCanvasVisible, InfoCanvasObject);
+    }
 }

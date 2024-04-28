@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -12,16 +11,21 @@ public class ManagerUtility : MonoBehaviour
     private InputData ControllerInputData;
     private bool LeftPrimaryIsPressed;
     private bool RightPrimaryIsPressed;
+    private bool LeftSecondaryIsPressed;
+    private bool RightSecondaryIsPressed;
+
     public StageScriptableObject StageScriptable;
 
     public static event Action OnRightPrimaryPressed;
     public static event Action OnLeftPrimaryPressed;
+    public static event Action OnRightSecondaryPressed;
+    public static event Action OnLeftSecondaryPressed;
 
     private void Start()
     {
         ControllerInputData = GetComponent<InputData>();
-
     }
+
     void CleanUpResources()
     {
         StageScriptable.ResetStages();
@@ -34,30 +38,32 @@ public class ManagerUtility : MonoBehaviour
 
     private void Update()
     {
-        bool isLeftPrimaryPressed;
-        bool isRightPrimaryPressed;
+        bool isLeftPrimaryPressed = GetButtonState(ControllerInputData.LeftController, CommonUsages.primaryButton);
+        bool isRightPrimaryPressed = GetButtonState(ControllerInputData.RightController, CommonUsages.primaryButton);
+        bool isLeftSecondaryPressed = GetButtonState(ControllerInputData.LeftController, CommonUsages.secondaryButton);
+        bool isRightSecondaryPressed = GetButtonState(ControllerInputData.RightController, CommonUsages.secondaryButton);
 
-        ControllerInputData.RightController.TryGetFeatureValue(CommonUsages.primaryButton, out isRightPrimaryPressed);
-        ControllerInputData.LeftController.TryGetFeatureValue(CommonUsages.primaryButton, out isLeftPrimaryPressed);
+        CheckAndInvoke(ref RightPrimaryIsPressed, isRightPrimaryPressed, OnRightPrimaryPressed);
+        CheckAndInvoke(ref LeftPrimaryIsPressed, isLeftPrimaryPressed, OnLeftPrimaryPressed);
+        CheckAndInvoke(ref RightSecondaryIsPressed, isRightSecondaryPressed, OnRightSecondaryPressed);
+        CheckAndInvoke(ref LeftSecondaryIsPressed, isLeftSecondaryPressed, OnLeftSecondaryPressed);
+    }
 
-        if (!RightPrimaryIsPressed && isRightPrimaryPressed)
-        {
-            OnRightPrimaryPressed?.Invoke();
-            RightPrimaryIsPressed = true;
-        }
-        else if (!isRightPrimaryPressed)
-        {
-            RightPrimaryIsPressed = false;
-        }
+    private bool GetButtonState(InputDevice device, InputFeatureUsage<bool> usage)
+    {
+        return device.TryGetFeatureValue(usage, out var value) && value;
+    }
 
-        if (!LeftPrimaryIsPressed && isLeftPrimaryPressed)
+    private void CheckAndInvoke(ref bool previousState, bool currentState, Action action)
+    {
+        if (!previousState && currentState)
         {
-            OnLeftPrimaryPressed?.Invoke();
-            LeftPrimaryIsPressed = true;
+            action?.Invoke();
+            previousState = true;
         }
-        else if (!isRightPrimaryPressed)
+        else if (previousState && !currentState)
         {
-            LeftPrimaryIsPressed = false;
+            previousState = false;
         }
     }
 }

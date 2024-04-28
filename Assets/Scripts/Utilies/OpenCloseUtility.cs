@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class OpenCloseUtility : MonoBehaviour
@@ -9,7 +10,10 @@ public class OpenCloseUtility : MonoBehaviour
     private XRSimpleInteractable SimpleInteractable;
     private Animator MAnimator;
     private bool IsOpen;
+
     public GameObject TriggerGameObject; // Object interacted with to open object
+    public UnityEvent OnOpen;
+    public UnityEvent OnClose;
 
 
     void Start()
@@ -31,11 +35,13 @@ public class OpenCloseUtility : MonoBehaviour
         {
             MAnimator.SetTrigger("TrOpen");
             IsOpen = true;
+            OnOpen.Invoke();
         }
         else
         {
             MAnimator.SetTrigger("TrClose");
             IsOpen = false;
+            OnClose.Invoke();
         }
     }
 }
