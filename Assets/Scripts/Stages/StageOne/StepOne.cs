@@ -7,15 +7,6 @@ public class StepOne : MonoBehaviour
 {
     public StageScriptableObject StageScriptable;
 
-    //private void OnEnable()
-    //{
-    //    PickedDroppedUtility.OnPicked += HandleSelectEntered;
-    //}
-    //private void OnDisable()
-    //{
-    //    PickedDroppedUtility.OnPicked -= HandleSelectEntered;
-    //}
-
     private bool CanPerformStep()
     {
         var step = StageScriptable.GetCurrentStep();
