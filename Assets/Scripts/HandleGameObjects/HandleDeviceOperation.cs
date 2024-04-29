@@ -41,17 +41,6 @@ public class HandleDeviceOperation : MonoBehaviour
             OnValidStart.Invoke();
             IsDeviceStart = false;
         }
-
-
-
-        //var isValidComplete = !IsDeviceOpen && IsObjectInDevice && IsDeviceStart && IsOperationComplete;
-
-        //if (isValidComplete)
-        //{
-        //    OnOperationComplete.Invoke();
-        //    IsDeviceStart = false;
-        //    IsOperationComplete = false;
-        //}
     }
 
 }
